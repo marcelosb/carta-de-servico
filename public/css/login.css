@@ -1,0 +1,125 @@
+.bloco-flex {
+	width: 100vw;
+	height: 100vh;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #F2F2F2;
+}
+
+.bloco-login {
+	width: 350px;
+	padding: 20px;
+	background-color: #FFFFFF;	
+	border-radius: 8px;
+    border: 1px solid #DADCE0;
+}
+
+.bloco-logo {
+	width: 100%;
+	display: flex;
+	justify-content: center; 
+	align-items: center; 
+	margin-bottom: 30px;
+}
+
+.bloco-btn-recuperar-senha {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* ALERT LOGIN */
+
+#loginAlert {
+    width: 100%;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+#loginAlert > .alert-login {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 15px;
+}
+
+.danger-login {
+	background-color: #f8d7da;
+	color: #721c24;
+	border-color: #f5c6cb;
+}
+.success-login {
+	background-color: #d4edda;
+	color: #155724;
+	border-color: #c3e6cb;
+}
+.warning-login {
+	background-color: #fff3cd;
+	color: #856404;
+	border-color: #ffeeba;
+}
+
+.alert-login > button {
+	outline: none;
+	border: none;
+	background-color: transparent;
+}
+
+/* REDEFINIR SENHA */
+
+.esqueci-senha {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+#esqueciMinhaSenha:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* SPINNER */
+
+.container-spinner {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.text-spinner {
+	margin-top: 15px;
+    font-size: 35px;
+    font-weight: 200;
+    color: #FFF;
+}
+
+.loader {
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	border-bottom: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 1.5s linear infinite;
+	animation: spin 1.5s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }

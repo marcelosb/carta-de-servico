@@ -1,0 +1,220 @@
+@font-face {
+	font-family: 'Product Sans Black';
+    src: url(../../fonts/product_sans_black.woff);
+}
+
+@font-face {
+	font-family: 'Product Sans Medium';
+	src: url(../../fonts/product_sans_medium.woff);
+}
+
+@font-face {
+	font-family: 'Product Sans Regular';
+	src: url(../../fonts/product_sans_regular.woff);
+}
+
+.bloco--geral--servico {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.bloco--geral--servico > .bloco--faq--servico {
+    width: 69%;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.bloco--faq--servico > header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.bloco--faq--servico > header > .breadcrumb--servico,
+.bloco--faq--servico > header > .breadcrumb--servico > a {
+    margin-bottom:10px;
+    color: #CCCCCC;
+}
+
+.bloco--faq--servico > header > .titulo {
+    font-family: 'Product Sans Medium';
+    font-size: 20px;
+    color: #6A6A6A;
+}
+.bloco--faq--servico > header > .subtitulo {
+    font-family: 'Product Sans Black';
+    font-size: 35px;
+    letter-spacing: -1px;
+    word-spacing: 1px;
+    color: #202121;
+}
+.bloco--faq--servico > header > .line {
+    width: 100%;
+    border-bottom: 1px solid #E0E1E3;
+}
+
+.bloco--faq--servico > .conteudo {
+    width: 100%;
+    border-bottom: 1px solid #E0E1E3;
+    padding-bottom: 38px;
+}
+
+
+.faq {
+    margin-bottom: 20px;
+}
+
+.faq > .pergunta {
+    font-size: 20px;
+}
+
+
+/* LATERAL - ASIDE */
+
+.bloco--geral--servico > .bloco--lateral {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+    padding: 30px 20px 20px 20px;
+    background-color: #EDEEF0;
+    border: 1px solid #E0E0E0;
+}
+
+.bloco--lateral > header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.bloco--lateral > header > .titulo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bloco--lateral > header > .titulo > img {
+    width: 10%;
+}
+.bloco--lateral > header > .titulo > span {
+    font-family: 'Product Sans Black';
+    font-size: 16px;
+    width: 90%;
+    padding-left: 5px;
+    letter-spacing: -1px;
+    word-spacing: 2px;
+    color: #202121;
+}
+
+.bloco--lateral > header > span {
+    font-family: 'Product Sans Medium';
+    width: 100%;
+    font-size: 16px;
+    margin-top: 2px;
+    color: #666666;
+}
+
+.bloco--lateral > line {
+    width: 190px; 
+    margin-top: 10px;
+    border-bottom: 1px solid #CCCCCC; 
+}
+
+.bloco--lateral > .conteudo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.conteudo > .info {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.conteudo > .info > img {
+    width: 8%;
+}
+.conteudo > .info > span {
+    width: 90%;
+    padding-left: 5px;
+    font-family: 'Product Sans Regular';
+    font-size: 14px;
+}
+
+/* NOTEBOOK */
+@media screen and (min-width: 900px) and (max-width: 1110px) {
+
+    .bloco--geral--servico > .bloco--faq--servico {
+        width: 60%;
+        padding-top: 15px;
+        padding-right: 15px;
+    }
+
+    .bloco--geral--servico > .bloco--lateral {
+        width: 30%;
+    }
+
+}
+
+/* TABLET */
+@media screen and (min-width: 0px) and (max-width: 899px) {
+
+    .bloco--geral--servico {
+        margin-top: 25px;
+    }
+
+    .bloco--faq--servico > header {
+        margin-bottom: 10px;
+    }
+
+    .bloco--faq--servico > header > .subtitulo {
+        font-size: 25px;
+        letter-spacing: -1px;
+        word-spacing: 1px;
+    }
+
+    .bloco--geral--servico > .bloco--faq--servico {
+        width: 100%;
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+
+    .bloco--geral--servico > .bloco--lateral {
+        width: 100%;
+    }
+
+    .bloco--lateral > header > .titulo > img {
+        width: 7%;
+    }
+    .bloco--lateral > header > .titulo > span {
+        font-size: 16px;
+        width: 90%;
+        padding-left: 5px;
+        letter-spacing: -1px;
+        word-spacing: 2px;
+    }
+
+    .conteudo > .info > img {
+        width: 5%;
+    }
+    .conteudo > .info > span {
+        width: 90%;
+        padding-left: 5px;
+        font-family: 'Product Sans Regular';
+        font-size: 14px;
+    }
+
+}
