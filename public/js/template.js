@@ -80,20 +80,19 @@
     // MUDA A COR DE FUNDO, DO TEXTO E DO ICONE DO MENU SELECIONADO
     const UrlCurrent = window.location.href;
 
-    // if (UrlCurrent.includes(substr)) {
+    // ABRE O SUBMENU
+    const listSubmenu = document.getElementById('listSubmenu');
+    listSubmenu.addEventListener('click', function() {
+        const submenu = document.querySelector('.submenu');
 
-    // }
-
-
-    // console.log(UrlCurrent.includes(substr))
-
-    // const menuCurrent = document.querySelector(`[href="${UrlCurrent}"]`);
-    // const menuIconCurrent = document.querySelector(`[href="${UrlCurrent}"] > svg > path:nth-child(2)`);
-
-    // if (menuCurrent && menuIconCurrent) {
-    //     menuCurrent.style.backgroundColor = 'rgba(0,0,0,.1)';
-    //     menuCurrent.style.color = '#FFFFFF';
-    //     menuIconCurrent.style.fill = '#FFFFFF';
-    // }
+        if (!submenu.classList.contains('submenu--on')) {
+            submenu.classList.add('submenu--on');
+            submenu.classList.remove('submenu--off');
+        } else {
+            submenu.classList.remove('submenu--on');
+            submenu.classList.add('submenu--off');
+        }
+        
+    });
     
 })();
