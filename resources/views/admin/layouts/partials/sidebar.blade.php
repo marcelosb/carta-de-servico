@@ -78,7 +78,7 @@
                 </svg>
             </a>
             <ul class="submenu" >
-                <li><a href="#">Perfis</a></li>
+                <li><a href="{{ route('dashboard.roles.index') }}">Perfis</a></li>
                 <li><a href="{{ route('dashboard.permissions.index') }}">Permissões</a></li>
             </ul>
         </li>

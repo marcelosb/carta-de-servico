@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SecretaryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
@@ -46,6 +47,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::resource('services', ServiceController::class)->except(['show']);
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('permissions', PermissionController::class)->except(['show']);
+    Route::resource('roles', RoleController::class)->except(['show']);
 
     /** Alteração das perguntas frequentes (Módulo específico de edição) */
     Route::get('/faq/edit', [FaqController::class, 'edit'])->name('faq.edit');

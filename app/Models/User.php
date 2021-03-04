@@ -45,10 +45,10 @@ class User extends Authenticatable
     /**
      * Lê-se: este usuário (this) pertence a muitas (belongsToMany) permissões (Permission::class)
      */
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class, 'user_permission');
-    }
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class, 'user_permission');
+    // }
 
     /**
      * Retornas todas as permissões do usuário
@@ -57,12 +57,12 @@ class User extends Authenticatable
      */
     public static function getPermissions()
     {
-        $permissions = [];
-        foreach (Auth::user()->permissions as $permission) {
-            $permissions[] = $permission->name;
-        }
+        // $permissions = [];
+        // foreach (Auth::user()->permissions as $permission) {
+        //     $permissions[] = $permission->name;
+        // }
 
-        return $permissions;
+        // return $permissions;
     }
 
 }

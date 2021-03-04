@@ -80,11 +80,10 @@ class UserController extends Controller
         foreach ($user->permissions as $permission) {
             $permissionArray[] = $permission->name;
         }
-        $userPermissions = implode(',', $permissionArray);
 
         return view('admin.dashboard.users.edit', [
             'user' => $user,
-            'userPermissions' => $userPermissions,
+            'userPermissions' => $permissionArray,
             'permissions' => $permissions
         ]);
     }
