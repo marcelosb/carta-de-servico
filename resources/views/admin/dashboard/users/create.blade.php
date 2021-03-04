@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.dashboard')
 
 @section('content')
@@ -29,8 +30,19 @@
             <input type="email" name="email" class="form-control" id="userEmail" value="{{ old('email') }}" required>
         </div>
 
+        {{-- PERFIS --}}
+        <div class="my-3">
+            <label for="role" class="form-label">Perfil</label>
+            <select class="form-select" name="role_id" id="role" autofocus>
+                <option selected>Selecione</option>
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}" {{ old("role_id") == $role->id ? "selected" : "" }}>{{ $role->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         {{-- PERMISSÕES --}}
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <h2>Permissões</h2>
             <hr>
             <div class="form-check">
@@ -51,7 +63,7 @@
                 </div>
             @endforeach
             <hr>
-        </div>
+        </div> --}}
     
         {{-- CAMPO SENHA --}}
         <div class="mb-3">

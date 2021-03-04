@@ -27,14 +27,14 @@ class UserRequest extends FormRequest
     {
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             return [ 
-                'permission' => 'required|array'
+                'role_id' => 'required|integer'
             ];
         }
 
         return [
             'name' => 'required|string|min:2|max:255',
             'email' => 'required|unique:users,email|string|email|max:255',
-            'permission' => 'required|array',
+            'role_id' => 'required|integer',
             'password' => 'required|min:5|confirmed'
         ];
     }
@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'permission.required' => 'Selecione pelo menos uma permissão!'
+            'role_id.integer' => 'Selecione um perfil!'
         ];
     }
 }

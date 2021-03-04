@@ -32,8 +32,23 @@
             <input type="email" name="email" class="form-control" id="userEmail" value="{{ $user->email }}" readonly>
         </div>
 
+        {{-- CAMPO SELEÇÃO DE PERFIL --}}
+        <div class="my-3">
+            <label for="userEmail" class="form-label">Perfil</label>
+            <select class="form-select" name="role_id" autofocus>
+                <option>Selecione</option>
+                @foreach ($roles as $role)
+                    @if($role->id === $roleId)
+                        <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                    @else
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+
         {{-- PERMISSÕES --}}
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <h2>Permissões</h2>
             <hr>
             <div class="form-check">
@@ -56,7 +71,7 @@
                 </div>
             @endforeach
             <hr>
-        <div>
+        <div> --}}
     
         {{-- BOTÕES DE EDITAR E VOLTAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

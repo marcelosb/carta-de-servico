@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
-use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
-use App\Models\UserPermission;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -33,10 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        $roles = Role::all(['id', 'name']);
 
         return view('admin.dashboard.users.create', [
-            'permissions' => $permissions
+            'roles' => $roles
         ]);
     }
 
@@ -54,12 +53,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        foreach ($request->permission as $id) {
-            UserPermission::create([
-                'user_id' => $user->id,
-                'permission_id' => $id
-            ]);
-        }
+        User::createRelationshipWithRole($user->id, $request->role_id);
 
         return redirect()->route('dashboard.users.index')
             ->with('status', 'Usuário cadastrado com sucesso!');
@@ -74,17 +68,13 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->firstOrFail();
-        $permissions = Permission::all();
-
-        $permissionArray = [];
-        foreach ($user->permissions as $permission) {
-            $permissionArray[] = $permission->name;
-        }
-
+        $roleId = $user->roles()->first()->id;
+        $roles = Role::all(['id', 'name']);
+        
         return view('admin.dashboard.users.edit', [
             'user' => $user,
-            'userPermissions' => $permissionArray,
-            'permissions' => $permissions
+            'roleId' => $roleId,
+            'roles' => $roles
         ]);
     }
 
@@ -100,16 +90,7 @@ class UserController extends Controller
         // VERIFICA SE O USUÁRIO EXISTE, CASO FALHE REDIRECIONA PARA A PÁGINA DE ERRO 404
         $user = User::where('id', $id)->firstOrFail();
 
-        // DELETA TODAS OS ID DE USUÁRIO ASSOCIADOS COM AS PERMISSÕES ANTIGAS
-        UserPermission::where('user_id', $user->id)->delete();
-
-        // CRIA NOVAS PERMISSÕES PARA O USUÁRIO CORRENTE
-        foreach ($request->permission as $permissionId) {
-            UserPermission::create([
-                'user_id' => $user->id,
-                'permission_id' => $permissionId
-            ]);
-        }
+        User::updateRelationshipWithRole($user->id, $request->role_id);
 
         return redirect()->route('dashboard.users.index')
             ->with('status', 'Usuário editado com sucesso!');
