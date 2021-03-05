@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Secretary;
+use App\Policies\SecretaryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Secretary::class => SecretaryPolicy::class
     ];
 
     /**

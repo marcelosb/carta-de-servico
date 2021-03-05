@@ -21,9 +21,9 @@
         <div class="form-group col-8">
             <input type="text" id="search" class="form-control" placeholder="Pesquisar pelo nome ou tema da secretaria"/>
         </div>
-        @if(hasPermission('cadastrar secretaria'))
+        @can('create', App\Models\Secretary::class)
             <a class="btn btn-primary col-3" href="{{ route('dashboard.secretaries.create') }}">Cadastrar Secretaria</a>
-        @endif
+        @endcan
     </div>
     
     <div class="table-responsive border border-1 rounded bg-white p-3">
@@ -42,11 +42,11 @@
                     <td>{{ $secretary->name }}</td>
                     <td>{{ $secretary->theme }}</td>
                     <td>
-                        @if(hasPermission('editar secretaria'))
+                        @can('edit', App\Models\Secretary::class)
                             <a class="btn btn-secondary mx-2" href="{{ route('dashboard.secretaries.edit', ['secretary' => $secretary->id]) }}">Editar</a> 
-                        @endif
+                        @endcan
 
-                        @if(hasPermission('deletar secretaria'))
+                        @can('delete', App\Models\Secretary::class)
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $secretary->id }}">Excluir</button>
 
                             <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endcan
                     </td>
                 </tr>
             @endforeach

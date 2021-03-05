@@ -11,8 +11,10 @@
                 Home
             </a>
         </li>
-        
-        @if(hasPermission('visualizar secretaria'))
+
+        {{-- @if(hasPermission('visualizar secretaria')) --}}
+
+        @can('viewAny', App\Models\Secretary::class)
             <li>
                 <a href="{{ route('dashboard.secretaries.index') }}" class="{{ isActive('secretaries') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
@@ -22,10 +24,10 @@
                     Secretarias
                 </a>
             </li>
-        @endif
+        @endcan
         
         
-        @if(hasPermission('visualizar serviço'))
+        {{-- @if(hasPermission('visualizar serviço')) --}}
             <li>
                 <a href="{{ route('dashboard.services.index') }}" class="{{ isActive('services') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
@@ -35,10 +37,10 @@
                     Serviços
                 </a>
             </li>
-        @endif
+        {{-- @endif --}}
         
 
-        @if(hasPermission('visualizar perguntas frequentes'))
+        {{-- @if(hasPermission('visualizar perguntas frequentes')) --}}
             <li>
                 <a href="{{ route('dashboard.faq.edit') }}" class="{{ isActive('faq') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px">
@@ -48,10 +50,10 @@
                     FAQs
                 </a>
             </li>
-        @endif
+        {{-- @endif --}}
         
 
-        @if(hasPermission('visualizar usuário'))
+        {{-- @if(hasPermission('visualizar usuário')) --}}
             <li>
                 <a href="{{ route('dashboard.users.index') }}" class="{{ isActive('users') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
@@ -61,7 +63,7 @@
                     Usuários
                 </a>
             </li>
-        @endif
+        {{-- @endif --}}
 
         <li id="listSubmenu">
             <a style="display:flex; justify-content:space-between; color: #899e9c;" class="{{ isActive('permissions') }}">

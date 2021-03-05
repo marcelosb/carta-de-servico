@@ -20,6 +20,8 @@ class SecretaryController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Secretary::class);
+
         $secretaries = Secretary::all();
 
         return view('admin.dashboard.secretaries.index', [
@@ -34,6 +36,8 @@ class SecretaryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Secretary::class);
+
         return view('admin.dashboard.secretaries.create');
     }
 
@@ -45,8 +49,6 @@ class SecretaryController extends Controller
      */
     public function store(SecretaryRequest $request)
     {
-        
-
         if ($request->hasFile('image_secretary') && $request->file('image_secretary')->isValid()) {
             $imageSecretary = Image::make($request->file('image_secretary'));
             $imageSecretary->fit(150, 150);
@@ -96,6 +98,8 @@ class SecretaryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit', Secretary::class);
+
         $secretary = Secretary::where('id', $id)->firstOrFail(); 
 
         return view('admin.dashboard.secretaries.edit', [
@@ -164,6 +168,9 @@ class SecretaryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Secretary::class);
+
+
         $secretary = Secretary::where('id', $id)->firstOrFail();
         
         // Deleta a foto de perfil do usuário, caso não seja a imagem padrão
