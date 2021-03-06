@@ -30,10 +30,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all(['id', 'name']);
+        // $permissions = Permission::all(['id', 'name']);
 
         return view('admin.dashboard.roles.create', [
-            'permissions' => $permissions
+            // 'permissions' => $permissions
         ]);
     }
 
@@ -50,9 +50,17 @@ class RoleController extends Controller
             'description' => $request->description,
         ]);
 
-        foreach ($request->permission as $permissionId) {
-            Role::createPermission($role->id, $permissionId);
+        $permissionsCode = [];
+        foreach ($request->permission as $code) {
+            $permissionsCode[] = $code;
         }
+        $codes = implode(',', $permissionsCode);
+
+        Role::createPermission($role->id, $codes);
+
+        // foreach ($request->permission as $permissionId) {
+        //     Role::createPermission($role->id, $permissionId);
+        // }
 
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil cadastrado com sucesso!');
@@ -67,17 +75,11 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::where('id', $id)->firstOrFail();
-        $permissions = Permission::all();
-
-        $permissionArray = [];
-        foreach ($role->permissions as $permission) {
-            $permissionArray[] = $permission->name;
-        }
+        $codes = explode(',', $role->permissions->codes);
 
         return view('admin.dashboard.roles.edit', [
             'role' => $role,
-            'rolePermissions' => $permissionArray,
-            'permissions' => $permissions
+            'codes' => $codes
         ]);
     }
 

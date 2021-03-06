@@ -20,14 +20,23 @@ function isActiveIcon(string $uri, string $color = '#FFFFFF')
     return $colorIconActive;
 }
 
-function isCheckedPermissionUser(string $valueCheckbox = '', array $permissions)
+function isCheckedPermissionUser(array $codes, array $permissions)
 {
-    // $regularExpression = '/' . $valueCheckbox . '/';
-    // $checkboxActive = preg_match($regularExpression, $permissions) ? ' checked' : '';
+    // return in_array($code, $permissions) ? ' checked' : '';
 
-    return in_array($valueCheckbox, $permissions) ? ' checked' : '';
+    // if (in_array($code, array_keys(config('permissions.name')))) {
 
-    // return $checkboxActive;
+    // }  
+    // foreach ($codes as $code) {
+    //     // dd($code);
+    //     if (in_array($code, array_keys($permissions))) {
+    //         return ' checked';
+    //         // die;
+    //     } else {
+    //         return '';
+    //     }
+    // }
+
 }
 
 function hasPermission(string $name = '')

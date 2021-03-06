@@ -38,15 +38,19 @@
                 <label class="form-check-label" for="checkSelectAll">Selecionar todos os privilégios</label>
             </div>
             <hr>
-            @foreach($permissions as $permission)
+            @foreach(config('permissions.name') as $key => $value)
+
+
+                {{-- <div>{{ $permission }}</div> --}}
+
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="{{ $permission->id }}" onClick="checkPermission(this)"
-                        @if(is_array(old('permission')) && in_array($permission->name, old('permission'))) 
+                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $key }}" id="{{ $key }}" onClick="checkPermission(this)"
+                        @if(is_array(old('permission')) && in_array($value, old('permission'))) 
                             checked 
                         @endif
                     >
-                    <label class="form-check-label" for="{{ $permission->id }}">
-                        {{ $permission->name }}
+                    <label class="form-check-label" for="{{ $key }}">
+                        {{ $value }}
                     </label>
                 </div>
             @endforeach

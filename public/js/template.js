@@ -79,20 +79,5 @@
 
     // MUDA A COR DE FUNDO, DO TEXTO E DO ICONE DO MENU SELECIONADO
     const UrlCurrent = window.location.href;
-
-    // ABRE O SUBMENU
-    const listSubmenu = document.getElementById('listSubmenu');
-    listSubmenu.addEventListener('click', function() {
-        const submenu = document.querySelector('.submenu');
-
-        if (!submenu.classList.contains('submenu--on')) {
-            submenu.classList.add('submenu--on');
-            submenu.classList.remove('submenu--off');
-        } else {
-            submenu.classList.remove('submenu--on');
-            submenu.classList.add('submenu--off');
-        }
-        
-    });
     
 })();

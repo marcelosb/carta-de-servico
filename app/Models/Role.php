@@ -32,14 +32,14 @@ class Role extends Model
      */
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'role_permission');
+        return $this->hasOne(Permission::class, 'role_id');
     }
 
-    public static function createPermission($roleId, $permissionId)
+    public static function createPermission($roleId, $codes)
     {
-        DB::table('role_permission')->insert([
+        DB::table('permissions')->insert([
             'role_id' => $roleId,
-            'permission_id' => $permissionId
+            'codes' => $codes
         ]);
     }
 

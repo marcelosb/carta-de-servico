@@ -28,8 +28,8 @@ class Permission extends Model
      /**
      * Lê-se: esta permissão (this) pertence a muitos (belongsToMany) usuários (User::class)
      */
-    // public function permissions()
-    // {
-    //     return $this->belongsToMany(User::class, 'user_permission');
-    // }
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

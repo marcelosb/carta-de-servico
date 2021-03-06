@@ -41,22 +41,22 @@
                 <label class="form-check-label" for="checkSelectAll">Selecionar todos os privilégios</label>
             </div>
             <hr>
-            @foreach($permissions as $permission)
+            @foreach(config('permissions.name') as $permissionCode => $permissionName)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="{{ $permission->id }}" onClick="checkPermission(this)"
-                        @if(is_array(old('permission')) && in_array($permission->name, old('permission'))) 
+                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permissionCode }}" id="{{ $permissionCode }}" onClick="checkPermission(this)"
+                        @if(is_array(old('permission')) && in_array($permissionName, old('permission'))) 
                             checked 
-                        @else
-                            {{ isCheckedPermissionUser($permission->name, $rolePermissions) }}
-                        @endif
+                        @endif      
                     >
-                    <label class="form-check-label" for="{{ $permission->id }}">
-                        {{ $permission->name }}
+                    <label class="form-check-label" for="{{ $permissionCode }}">
+                        {{ $permissionName }}
                     </label>
                 </div>
             @endforeach
             <hr>
         <div>
+
+            
     
         {{-- BOTÕES DE EDITAR E VOLTAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -69,6 +69,19 @@
 
 @section('scripts')
     <script>
+
+        function isCheckedPermissionUser() {
+            const permissions = document.querySelectorAll('input[name="permission[]"]');
+            const codes = {!! json_encode($codes) !!};
+
+            permissions.forEach(function(element) {
+                codes.forEach(function(code) {
+                    if (code === element.value) {
+                        element.checked = true;
+                    }
+                });
+            });   
+        }
 
         function activeAllPermissions(elementSelectAll) {
             const permissions = document.querySelectorAll('[type="checkbox"]');
@@ -85,6 +98,8 @@
                 selectAll.checked = permission.checked;
             }
         }
+
+        isCheckedPermissionUser();
 
     </script>
 @endsection

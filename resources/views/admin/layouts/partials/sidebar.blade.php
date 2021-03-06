@@ -14,7 +14,7 @@
 
         {{-- @if(hasPermission('visualizar secretaria')) --}}
 
-        @can('viewAny', App\Models\Secretary::class)
+        {{-- @can('viewAny', App\Models\Secretary::class) --}}
             <li>
                 <a href="{{ route('dashboard.secretaries.index') }}" class="{{ isActive('secretaries') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
@@ -24,7 +24,7 @@
                     Secretarias
                 </a>
             </li>
-        @endcan
+        {{-- @endcan --}}
         
         
         {{-- @if(hasPermission('visualizar serviço')) --}}
@@ -65,24 +65,14 @@
             </li>
         {{-- @endif --}}
 
-        <li id="listSubmenu">
-            <a style="display:flex; justify-content:space-between; color: #899e9c;" class="{{ isActive('permissions') }}">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="margin-right:15px">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path fill="{{ isActiveIcon('permissions') }}" d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                    </svg>
-                    Acesso
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="margin-left: 4px">
-                    <path d="M0 0h24v24H0V0z" fill="none"/>
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        <li>
+            <a href="{{ route('dashboard.roles.index') }}" class="{{ isActive('roles') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path fill="{{ isActiveIcon('roles') }}" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
                 </svg>
+                Perfis de Acesso
             </a>
-            <ul class="submenu" >
-                <li><a href="{{ route('dashboard.roles.index') }}">Perfis</a></li>
-                <li><a href="{{ route('dashboard.permissions.index') }}">Permissões</a></li>
-            </ul>
         </li>
         
         <li>
