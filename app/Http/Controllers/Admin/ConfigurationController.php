@@ -19,6 +19,8 @@ class ConfigurationController extends Controller
      */
     public function edit()
     {
+        $this->authorize('view', Configuration::class);
+
         $configuration = Configuration::getConfiguration();
 
         return view('admin.dashboard.configurations.edit', [
@@ -35,6 +37,8 @@ class ConfigurationController extends Controller
      */
     public function update(ConfigurationRequest $request)
     {   
+        $this->authorize('edit', Configuration::class);
+
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
             $logoCurrent = $this->createImage($request->file('logo'));
 

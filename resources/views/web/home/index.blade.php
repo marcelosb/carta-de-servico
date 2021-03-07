@@ -12,7 +12,7 @@
     </section>
 
     <section class="wrapper">
-        <div class="temas--unidades--gestoras" style="border-radius:50px"> 
+        <div class="temas--unidades--gestoras" style="border-radius:10px"> 
             @foreach($secretaries as $secretary)
                 <a class="bloco" href="{{ route('web.secretary', $secretary->theme_slug) }}">
                     @if($secretary->icon === 'default')
@@ -65,10 +65,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: url("{{ asset('images/web/prefeitura_sede.jpg') }}");
+            /* background-image: url("{{ asset('images/web/prefeitura_sede.jpg') }}"); */
             background-repeat: no-repeat;
             background-size: cover;
-            color: var(--white);
+            color: #293F6B;
             padding: 30px;
         }
         .banner > h1 {
@@ -100,7 +100,7 @@
             box-shadow: 0px 0px 3px #DDDDDD;
             padding: 20px;
             /* background-color: #293f6b; */
-            background-color: #F5F5F5;
+            background-color: #FFFFFF;
         }
         .temas--unidades--gestoras > .bloco {
             width: 22%;
@@ -120,8 +120,9 @@
         }
         .temas--unidades--gestoras > .bloco:hover {
             /* background-color: #F6CB2F; */
-            background-color: #FFF;
-            box-shadow: 0 10px 30px 0 rgb(47 60 74 / 8%);
+            /* background-color: #FFF; */
+            background-color: #DDDDDD;
+            /* box-shadow: 0 10px 30px 0 rgb(47 60 74 / 8%); */
             transform: scale(1.1);
         }
         .temas--unidades--gestoras > .bloco > img {

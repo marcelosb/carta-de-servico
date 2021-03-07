@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPermission;
 use Illuminate\Support\Facades\Hash;
@@ -31,10 +32,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            'permission' => ['required', 'array']
-        ],
-        [
-            'permission.required' => 'Selecione pelo menos uma permissão!'
+            'role' => ['required', 'string']
         ])->validate();
 
         $user = User::create([
@@ -43,19 +41,15 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password'])
         ]);
 
-        foreach ($input['permission'] as $id) {
-            UserPermission::create([
-                'user_id' => $user->id,
-                'permission_id' => $id
+        $role = Role::where('name', config('permissions.role.admin'))->first();
+        if (!isset($role)) {
+            $role = Role::create([
+                'name' => config('permissions.role.admin'),
+                'description' => 'Tem acesso a todos os módulos do sistema'
             ]);
         }
+        User::createRelationshipWithRole($user->id, $role->id);
 
         return $user;
-
-        // return User::create([
-        //     'name' => $input['name'],
-        //     'email' => $input['email'],
-        //     'password' => Hash::make($input['password']),
-        // ]);
     }
 }

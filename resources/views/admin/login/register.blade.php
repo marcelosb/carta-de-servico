@@ -26,19 +26,10 @@
             <input type="email" name="email" class="form-control text-lowercase" value="{{ old('email') }}" id="email" required>
         </div>
 
-         {{-- PERMISSÕES --}}
+         {{-- PERFIL --}}
          <div class="mb-3">
-            <h2>Permissões</h2>
-            <hr>
-            @foreach($permissions as $permission)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="{{ $permission->id }}" onClick="checkPermission(this)" checked>
-                    <label class="form-check-label" for="{{ $permission->id }}">
-                        {{ $permission->name }}
-                    </label>
-                </div>
-            @endforeach
-            <hr>
+            <label for="role" class="form-label">Perfil</label>
+            <input type="text" name="role" class="form-control" value="{{ old('role') ?? config('permissions.role.admin') }}" id="role" readonly>
         </div>
 
         {{-- CAMPO SENHA --}}

@@ -16,6 +16,8 @@ class FaqController extends Controller
      */
     public function edit()
     {
+        $this->authorize('view', Faq::class);
+
         $faq = Faq::getFaq();
 
         return view('admin.dashboard.faqs.edit', [
@@ -32,6 +34,8 @@ class FaqController extends Controller
      */
     public function update(FaqRequest $request)
     {
+        $this->authorize('edit', Faq::class);
+
         $faq = Faq::where('id', '>', 0)->firstOrFail();
         $faq->fill($request->all());
         $faq->save();

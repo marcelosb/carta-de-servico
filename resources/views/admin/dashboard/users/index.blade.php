@@ -21,9 +21,9 @@
         <div class="form-group col-8">
             <input type="text" id="search" class="form-control" placeholder="Pesquisar pelo nome ou e-mail do usuário"/>
         </div>
-        @if(hasPermission('cadastrar usuário'))
+        @can('create', App\Models\User::class)
             <a class="btn btn-primary col-3" href="{{ route('dashboard.users.create') }}">Cadastrar Usuário</a>
-        @endif
+        @endcan
     </div>
 
     <div class="table-responsive border border-1 rounded bg-white p-3">
@@ -42,11 +42,11 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        @if(hasPermission('editar usuário'))
+                        @can('edit', App\Models\User::class)
                             <a class="btn btn-secondary mx-2" href="{{ route('dashboard.users.edit', ['user' => $user->id]) }}">Editar</a> 
-                        @endif
+                        @endcan
                         
-                        @if(hasPermission('deletar usuário'))
+                        @can('delete', App\Models\User::class)
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $user->id }}">Excluir</button>
                             
                             <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endcan
                     </td>
                 </tr>
             @endforeach

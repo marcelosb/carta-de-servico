@@ -41,12 +41,12 @@
         <input type="hidden" name="faq_id" value="{{ $faq->id }}">
 
         {{-- BOTÕES DE SALVAR E CANCELAR --}}
-        @if(hasPermission('editar perguntas frequentes'))
+        @can('edit', App\Models\Faq::class)
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="submit" class="btn btn-primary">Salvar</button>
                 <a href="{{ route('dashboard.home') }}" class="btn btn-secondary">Cancelar</a>  
             </div>
-        @endif
+        @endcan
     </form>
 
 @endsection

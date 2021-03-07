@@ -16,8 +16,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all(['id', 'name']);
+        $this->authorize('viewAny', Role::class);
 
+        $roles = Role::where('name', '!=', config('permissions.role.admin'))->get(['id', 'name']);
+        
         return view('admin.dashboard.roles.index', [
             'roles' => $roles
         ]);
@@ -30,11 +32,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // $permissions = Permission::all(['id', 'name']);
+        $this->authorize('create', Role::class);
 
-        return view('admin.dashboard.roles.create', [
-            // 'permissions' => $permissions
-        ]);
+        return view('admin.dashboard.roles.create');
     }
 
     /**
@@ -58,10 +58,6 @@ class RoleController extends Controller
 
         Role::createPermission($role->id, $codes);
 
-        // foreach ($request->permission as $permissionId) {
-        //     Role::createPermission($role->id, $permissionId);
-        // }
-
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil cadastrado com sucesso!');
     }
@@ -74,6 +70,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit', Role::class);
+
         $role = Role::where('id', $id)->firstOrFail();
         $codes = explode(',', $role->permissions->codes);
 
@@ -95,13 +93,13 @@ class RoleController extends Controller
         // VERIFICA SE O USUÁRIO EXISTE, CASO FALHE REDIRECIONA PARA A PÁGINA DE ERRO 404
         $role = Role::where('id', $id)->firstOrFail();
 
-        // DELETA TODAS OS ID DE PERFIL ASSOCIADOS COM AS PERMISSÕES ANTIGAS
-        Role::deletePermissionsOld($role->id);
-
-        // CRIA NOVAS PERMISSÕES PARA O USUÁRIO CORRENTE
-        foreach ($request->permission as $permissionId) {
-            Role::createPermission($role->id, $permissionId);
+        $permissionsCode = [];
+        foreach ($request->permission as $code) {
+            $permissionsCode[] = $code;
         }
+        $codes = implode(',', $permissionsCode);
+
+        Role::updatePermission($role->id, $codes);
 
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil alterado com sucesso!');
@@ -115,10 +113,13 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Role::class);
+
         $role = Role::where('id', $id)->firstOrFail();
         $role->delete();
 
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil excluído com sucesso!');
     }
+    
 }

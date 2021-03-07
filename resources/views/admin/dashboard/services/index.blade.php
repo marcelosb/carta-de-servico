@@ -21,9 +21,9 @@
         <div class="form-group col-8">
             <input type="text" id="search" class="form-control" placeholder="Pesquisar pelo nome ou tema do serviço"/>
         </div>
-        @if(hasPermission('cadastrar serviço'))
+        @can('create', App\Models\Service::class)
             <a class="btn btn-primary col-3" href="{{ route('dashboard.services.create') }}">Cadastrar Serviço</a>
-        @endif
+        @endcan
     </div>
 
     <div class="table-responsive border border-1 rounded bg-white p-3">
@@ -42,11 +42,11 @@
                     <td>{{ $service->name }}</td>
                     <td>{{ $service->secretary->theme }}</td>
                     <td>
-                        @if(hasPermission('editar serviço'))
+                        @can('edit', App\Models\Service::class)
                             <a class="btn btn-secondary mx-2" href="{{ route('dashboard.services.edit', ['service' => $service->id]) }}">Editar</a> 
-                        @endif
+                        @endcan
 
-                        @if(hasPermission('deletar serviço'))
+                        @can('delete', App\Models\Service::class)
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $service->id }}">Excluir</button>
                         
                             <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endcan
                     </td>
                 </tr>
             @endforeach

@@ -18,6 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         $users = User::all();
 
         return view('admin.dashboard.users.index', [
@@ -32,6 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         $roles = Role::all(['id', 'name']);
 
         return view('admin.dashboard.users.create', [
@@ -67,6 +71,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit', User::class);
+
         $user = User::where('id', $id)->firstOrFail();
         $roleId = $user->roles()->first()->id;
         $roles = Role::all(['id', 'name']);
@@ -87,7 +93,6 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        // VERIFICA SE O USUÁRIO EXISTE, CASO FALHE REDIRECIONA PARA A PÁGINA DE ERRO 404
         $user = User::where('id', $id)->firstOrFail();
 
         User::updateRelationshipWithRole($user->id, $request->role_id);
@@ -104,6 +109,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', User::class);
+
         $user = User::where('id', $id)->firstOrFail();
         
         // Deleta a foto de perfil do usuário, caso não seja a imagem padrão

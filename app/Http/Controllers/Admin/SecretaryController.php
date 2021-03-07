@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SecretaryRequest;
 use App\Models\Secretary;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
@@ -57,7 +55,6 @@ class SecretaryController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $imageSecretary->encode());
 
-
             Secretary::create([
                 'name' => $request->name,
                 'theme' => $request->theme,
@@ -83,11 +80,6 @@ class SecretaryController extends Controller
 
         return redirect()->route('dashboard.secretaries.index')
             ->with('status', 'Secretaria cadastrada com sucesso!');
-
-        // Secretary::create($request->all());
-
-        // return redirect()->route('dashboard.secretaries.index')
-        //     ->with('status', 'Secretaria cadastrada com sucesso!');
     }
 
     /**
@@ -99,14 +91,14 @@ class SecretaryController extends Controller
     public function edit($id)
     {
         $this->authorize('edit', Secretary::class);
-
+        
         $secretary = Secretary::where('id', $id)->firstOrFail(); 
 
         return view('admin.dashboard.secretaries.edit', [
             'secretary' => $secretary
         ]);
     }
-
+                
     /**
      * Update the specified resource in storage.
      *
@@ -152,10 +144,6 @@ class SecretaryController extends Controller
             ]);
         }
 
-        // $secretary = Secretary::where('id', $id)->firstOrFail();
-        // $secretary->fill($request->all());
-        // $secretary->save();
-
         return redirect()->route('dashboard.secretaries.index')
             ->with('status', 'Secretaria atualizada com sucesso!');
     }
@@ -170,7 +158,6 @@ class SecretaryController extends Controller
     {
         $this->authorize('delete', Secretary::class);
 
-
         $secretary = Secretary::where('id', $id)->firstOrFail();
         
         // Deleta a foto de perfil do usuário, caso não seja a imagem padrão
@@ -181,9 +168,6 @@ class SecretaryController extends Controller
 
         // Deleta o usuário
         $secretary->delete();
-
-        // $secretary = Secretary::where('id', $id)->firstOrFail();
-        // $secretary->delete();
 
         return redirect()->route('dashboard.secretaries.index')
             ->with('status', 'Secretaria excluída com sucesso!');

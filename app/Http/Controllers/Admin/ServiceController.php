@@ -16,6 +16,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Service::class);
+
         $services = Service::with('secretary')->paginate(10);
 
         return view('admin.dashboard.services.index', [
@@ -30,6 +32,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Service::class);
+
         $secretaries = Secretary::all(['id', 'name']);
 
         return view('admin.dashboard.services.create', [
@@ -59,6 +63,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit', Service::class);
+
         $service = Service::where('id', $id)->firstOrFail();
         $secretaries = Secretary::all(['id', 'name']);
 
@@ -93,10 +99,13 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Service::class);
+
         $service = Service::where('id', $id)->firstOrFail();
         $service->delete();
 
         return redirect()->route('dashboard.services.index')
             ->with('status', 'Serviço excluído com sucesso!');
     }
+    
 }

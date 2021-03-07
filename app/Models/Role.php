@@ -43,6 +43,13 @@ class Role extends Model
         ]);
     }
 
+    public static function updatePermission($roleId, $codes)
+    {
+        DB::table('permissions')->where('role_id', $roleId)->update([
+            'codes' => $codes
+        ]);
+    }
+
     public static function deletePermissionsOld($roleId)
     {
         DB::table('role_permission')->where('role_id', $roleId)->delete();

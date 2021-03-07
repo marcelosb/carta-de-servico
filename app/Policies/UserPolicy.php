@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SecretaryPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -18,47 +17,46 @@ class SecretaryPolicy
     public function __construct() {}
 
     /**
-     * Determina se o usuário pode visualizar o módulo secretaria.
+     * Determina se o usuário pode visualizar o módulo de usuário.
      *
      * @param  \App\Models\User  $user
      * @return bool
      */
     public function viewAny(User $user)
     { 
-        return hasPermission($user, '001');
+        return hasPermission($user, '011');
     }
 
     /**  
-     * Determina se o usuário pode criar uma nova secretaria.
+     * Determina se o usuário pode criar uma novo usuário.
      * 
      * @param  \App\Models\User  $user
      * @return bool
      */
     public function create(User $user)
     { 
-        return hasPermission($user, '002');
+        return hasPermission($user, '012');
     }
 
     /**  
-     * Determina se o usuário pode editar uma secretaria.
+     * Determina se o usuário pode editar um usuário existente.
      * 
      * @param  \App\Models\User  $user
      * @return bool
      */
     public function edit(User $user)
     { 
-        return hasPermission($user, '003');
+        return hasPermission($user, '013');
     }
 
     /**  
-     * Determina se o usuário pode deletar uma secretaria.
+     * Determina se o usuário pode deletar um usuário em específico.
      * 
      * @param  \App\Models\User  $user
      * @return bool
      */
     public function delete(User $user)
     { 
-        return hasPermission($user, '004');
+        return hasPermission($user, '014');
     }
-
 }

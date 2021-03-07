@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Configuration;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 
@@ -39,11 +40,19 @@ function isCheckedPermissionUser(array $codes, array $permissions)
 
 }
 
-function hasPermission(string $name = '')
+function hasPermission(User $user, string $codeCurrent)
 {
-    // return in_array($name, User::getPermissions());
+    $id = $user->roles()->first()->id;
+    $roles = Role::where('id', $id)->first();
 
-    return true;
+    $codes = explode(',', $roles->permissions->codes);
+    foreach ($codes as $code) {
+        if ($code === $codeCurrent) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function logo(string $page = 'web') 

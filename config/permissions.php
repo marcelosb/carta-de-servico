@@ -44,7 +44,27 @@ return [
         '013' =>'editar usuário',
         '014' =>'deletar usuário',
 
+        /**
+        * Permissões do módulo perfil
+        */
+        '015' => 'visualizar perfil',
+        '016' =>'cadastrar perfil',
+        '017' =>'editar perfil',
+        '018' =>'deletar perfil',
+
+        /**
+        * Permissões do módulo configurações gerais
+        */
+        '019' => 'visualizar configurações gerais',
+        '020' =>'editar configurações gerais',
+
     ],
     
+    /**
+    * Administrador geral do sistema - tem acesso a todas as permissões
+    */
+    'role' => [
+        'admin' => 'Administrador',
+    ],
 
 ];

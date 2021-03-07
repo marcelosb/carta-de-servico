@@ -21,9 +21,11 @@ class UserProfileController extends Controller
      */
     public function index() {
         $user = Auth::user();
+        $role = $user->roles->pluck('name')->first();
 
         return view('admin.dashboard.user-profile.index', [
-            'user' => $user
+            'user' => $user,
+            'role' => $role
         ]);
     }
 

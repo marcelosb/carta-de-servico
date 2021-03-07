@@ -43,6 +43,10 @@
             <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" value="{{ $user->email }}" readonly>
         </div>
+        <div class="mb-3">
+            <label for="roleUser" class="form-label">Perfil</label>
+            <input type="text" class="form-control" id="roleUser" value="{{ $role }}" readonly>
+        </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-between">
             <a href="{{ route('dashboard.user.profile.edit.password') }}" class="btn btn-primary">Alterar senha</a>
             <a href="{{ route('dashboard.user.profile.edit') }}" class="btn btn-secondary">Alterar dados</a>

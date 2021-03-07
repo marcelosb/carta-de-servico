@@ -16,6 +16,11 @@
         </div>
     @endif
 
+    @php $disabled = ''; @endphp
+    @cannot('edit', App\Models\Configuration::class)
+        @php $disabled = ' disabled'; @endphp
+    @endcannot
+
     <form method="POST" action="{{ route('dashboard.configurations.update', $configuration->id) }}" enctype="multipart/form-data">
         <h2 class="mb-4">Configurações</h2>
 
@@ -32,6 +37,7 @@
                     id="webSiteTitle" 
                     value="{{ old('website_title') ?? $configuration->website_title }}" 
                     required
+                    {{ $disabled }}
                 >
             </div>
         </div>
@@ -46,6 +52,7 @@
                     id="logoImage"
                     value="{{ old('logo') ?? $configuration->logo }}" 
                     accept="image/png, image/jpg, image/jpeg"
+                    {{ $disabled }}
                 >
             </div>
             <div class="mb-3">
@@ -64,6 +71,7 @@
                     id="faviconId"
                     value="{{ old('logo') ?? $configuration->favicon }}" 
                     accept="image/png, image/jpg, image/x-icon"
+                    {{ $disabled }}
                 >
             </div>
             <div class="mb-3">
@@ -79,14 +87,16 @@
             </div>
         </div>
     
-        <input type="hidden" name="configuration_id" value="{{ $configuration->id }}">
-        <input type="hidden" name="logo_path_old" value="{{ $configuration->logo }}">
-        <input type="hidden" name="favicon_path_old" value="{{ $configuration->favicon }}">
-    
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ route('dashboard.home') }}" class="btn btn-secondary">Cancelar</a>   
-        </div>
+        @can('edit', App\Models\Configuration::class)
+            <input type="hidden" name="configuration_id" value="{{ $configuration->id }}">
+            <input type="hidden" name="logo_path_old" value="{{ $configuration->logo }}">
+            <input type="hidden" name="favicon_path_old" value="{{ $configuration->favicon }}">
+        
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{{ route('dashboard.home') }}" class="btn btn-secondary">Cancelar</a>   
+            </div>
+        @endcan
     </form>
 
 @endsection

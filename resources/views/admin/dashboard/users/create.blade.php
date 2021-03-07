@@ -40,30 +40,6 @@
                 @endforeach
             </select>
         </div>
-
-        {{-- PERMISSÕES --}}
-        {{-- <div class="mb-3">
-            <h2>Permissões</h2>
-            <hr>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="select all" id="checkSelectAll" onClick="activeAllPermissions(this)">
-                <label class="form-check-label" for="checkSelectAll">Selecionar todos os privilégios</label>
-            </div>
-            <hr>
-            @foreach($permissions as $permission)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="{{ $permission->id }}" onClick="checkPermission(this)"
-                        @if(is_array(old('permission')) && in_array($permission->name, old('permission'))) 
-                            checked 
-                        @endif
-                    >
-                    <label class="form-check-label" for="{{ $permission->id }}">
-                        {{ $permission->name }}
-                    </label>
-                </div>
-            @endforeach
-            <hr>
-        </div> --}}
     
         {{-- CAMPO SENHA --}}
         <div class="mb-3">

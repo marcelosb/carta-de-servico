@@ -21,9 +21,9 @@
         <div class="form-group col-8">
             <input type="text" id="search" class="form-control" placeholder="Pesquisar pelo id ou nome do perfil"/>
         </div>
-        @if(hasPermission('cadastrar permissão'))
+        @can('create', App\Models\Role::class)
             <a class="btn btn-primary col-3" href="{{ route('dashboard.roles.create') }}">Cadastrar Perfil</a>
-        @endif
+        @endcan
     </div>
     
     <div class="table-responsive border border-1 rounded bg-white p-3">
@@ -42,11 +42,11 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        @if(hasPermission('editar permissão'))
+                        @can('create', App\Models\Role::class)
                             <a class="btn btn-secondary mx-2" href="{{ route('dashboard.roles.edit', $role->id) }}">Editar</a> 
-                        @endif
+                        @endcan
 
-                        @if(hasPermission('deletar permissão'))
+                        @can('edit', App\Models\Role::class)
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $role->id }}">Excluir</button>
 
                             <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endcan
                     </td>
                 </tr>
             @endforeach
