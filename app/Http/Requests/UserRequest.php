@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +34,8 @@ class UserRequest extends FormRequest
             'name' => 'required|string|min:2|max:255',
             'email' => 'required|unique:users,email|string|email|max:255',
             'role_id' => 'required|integer',
-            'password' => 'required|min:5|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
         ];
     }
 
@@ -50,4 +50,5 @@ class UserRequest extends FormRequest
             'role_id.integer' => 'Selecione um perfil!'
         ];
     }
+
 }

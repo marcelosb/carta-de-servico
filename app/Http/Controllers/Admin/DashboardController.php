@@ -26,7 +26,9 @@ class DashboardController extends Controller
                 'name' => config('permissions.role.admin'),
                 'description' => 'Tem acesso a todos os módulos do sistema'
             ]);
-            User::createRelationshipWithRole(Auth::user()->id, $role->id);
+
+            $user = User::where('id', Auth::user()->id)->first();
+            $user->roles()->sync($role->id);
         }
 
         $secretaries = Secretary::all()->count();

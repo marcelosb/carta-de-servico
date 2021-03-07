@@ -35,23 +35,23 @@ class Role extends Model
         return $this->hasOne(Permission::class, 'role_id');
     }
 
-    public static function createPermission($roleId, $codes)
+    /**
+     * Verifica se existe o perfil de admin cadastrado no sistema.
+     * Caso não exista, é criado um perfil de admin.
+     * 
+     * @return App\Models\Role
+     */
+    public static function admin()
     {
-        DB::table('permissions')->insert([
-            'role_id' => $roleId,
-            'codes' => $codes
-        ]);
+        $role = Role::where('name', config('permissions.role.admin'))->first();
+        if (!isset($role)) {
+            $role = Role::create([
+                'name' => config('permissions.role.admin'),
+                'description' => 'Tem acesso a todos os módulos do sistema'
+            ]);
+        }
+
+        return $role;
     }
 
-    public static function updatePermission($roleId, $codes)
-    {
-        DB::table('permissions')->where('role_id', $roleId)->update([
-            'codes' => $codes
-        ]);
-    }
-
-    public static function deletePermissionsOld($roleId)
-    {
-        DB::table('role_permission')->where('role_id', $roleId)->delete();
-    }
 }

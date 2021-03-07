@@ -22,11 +22,11 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'codes'
     ];
 
      /**
-     * Lê-se: esta permissão (this) pertence a muitos (belongsToMany) usuários (User::class)
+     * Lê-se: esta permissão (this) pertence a um (belongsTo) perfil (Role::class)
      */
     public function role()
     {

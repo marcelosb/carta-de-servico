@@ -46,4 +46,23 @@ class RoleRequest extends FormRequest
             'permission' => 'required|array'
         ];
     }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $permissionsCode = [];
+        foreach ($this->permission as $code) {
+            $permissionsCode[] = $code;
+        }
+        $codes = implode(',', $permissionsCode);
+
+        $this->merge([
+            'codes' => $codes
+        ]);
+    }
+
 }

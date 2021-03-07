@@ -43,7 +43,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * Realiza a criação de um nov serviço.
+     * Realiza a criação de um novo serviço.
      *
      * @route /dashboard/services  POST
      * @param  \Illuminate\Http\ServiceRequest  $request

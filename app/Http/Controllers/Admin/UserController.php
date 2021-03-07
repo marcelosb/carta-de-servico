@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -19,8 +21,8 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('viewAny', User::class);
-
-        $users = User::all();
+        
+        $users = User::where('id', '!=', Auth::user()->id)->get();
 
         return view('admin.dashboard.users.index', [
             'users' => $users
@@ -53,13 +55,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     { 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
-
-        User::createRelationshipWithRole($user->id, $request->role_id);
+        DB::beginTransaction();
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            $user->roles()->sync($request->role_id);
+        DB::commit();
 
         return redirect()->route('dashboard.users.index')
             ->with('status', 'Usuário cadastrado com sucesso!');
@@ -98,8 +101,7 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = User::where('id', $id)->firstOrFail();
-
-        User::updateRelationshipWithRole($user->id, $request->role_id);
+        $user->roles()->sync($request->role_id);
 
         return redirect()->route('dashboard.users.index')
             ->with('status', 'Usuário editado com sucesso!');

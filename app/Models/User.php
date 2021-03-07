@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -50,21 +50,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
-    public static function createRelationshipWithRole($roleId, $permissionId)
-    {
-        DB::table('user_role')->insert([
-            'user_id' => $roleId,
-            'role_id' => $permissionId
-        ]);
-    }
-
-    public static function updateRelationshipWithRole($userId, $roleId)
-    {
-        DB::table('user_role')->where('user_id', $userId)->update([
-            'role_id' => $roleId
-        ]);
-    }
-
+    /**
+     * Verifica se o usuário tem o perfil de Administrador.
+     * Caso seja Admin, é liberado o acesso a todos os módulos do sistema.
+     * 
+     * @return bool
+     */
     public static function isAdministrator()
     {
         $role = Auth::user()->roles->pluck('name')->first();

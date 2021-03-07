@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPermission;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -41,14 +42,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password'])
         ]);
 
-        $role = Role::where('name', config('permissions.role.admin'))->first();
-        if (!isset($role)) {
-            $role = Role::create([
-                'name' => config('permissions.role.admin'),
-                'description' => 'Tem acesso a todos os módulos do sistema'
-            ]);
-        }
-        User::createRelationshipWithRole($user->id, $role->id);
+        $role = Role::admin();
+        $user->roles()->sync($role->id);
 
         return $user;
     }

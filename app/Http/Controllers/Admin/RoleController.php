@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -46,18 +47,10 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $role = Role::create([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-
-        $permissionsCode = [];
-        foreach ($request->permission as $code) {
-            $permissionsCode[] = $code;
-        }
-        $codes = implode(',', $permissionsCode);
-
-        Role::createPermission($role->id, $codes);
+        DB::beginTransaction();
+            $role = Role::create($request->all());
+            $role->permissions()->create($request->all());
+        DB::commit();
 
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil cadastrado com sucesso!');
@@ -93,16 +86,12 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, $id)
     {
-        // VERIFICA SE O USUÁRIO EXISTE, CASO FALHE REDIRECIONA PARA A PÁGINA DE ERRO 404
         $role = Role::where('id', $id)->firstOrFail();
 
-        $permissionsCode = [];
-        foreach ($request->permission as $code) {
-            $permissionsCode[] = $code;
-        }
-        $codes = implode(',', $permissionsCode);
-
-        Role::updatePermission($role->id, $codes);
+        DB::beginTransaction();
+            $role->update($request->all());
+            $role->permissions->update($request->all());
+        DB::commit();
 
         return redirect()->route('dashboard.roles.index')
             ->with('status', 'Perfil alterado com sucesso!');
