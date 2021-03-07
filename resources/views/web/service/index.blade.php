@@ -43,7 +43,7 @@
                         </div>
                         <div class="info">
                             <img src="{{ asset('images/web/service/watch.svg') }}" alt="Horário de atendimento">
-                            <span>{{ $secretary->open_hours }}</span>
+                            <span>{{ $secretary->opening_hours }}</span>
                         </div>
                     </div>
                 </aside>
