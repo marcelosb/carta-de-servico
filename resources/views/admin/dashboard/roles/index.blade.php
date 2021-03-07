@@ -36,47 +36,45 @@
                 </tr>
             </thead>
             <tbody>
-    
-            @foreach($roles as $role)
-                <tr class="border-bottom">
-                    <td>{{ $role->id }}</td>
-                    <td>{{ $role->name }}</td>
-                    <td>
-                        @can('create', App\Models\Role::class)
-                            <a class="btn btn-secondary mx-2" href="{{ route('dashboard.roles.edit', $role->id) }}">Editar</a> 
-                        @endcan
+                @foreach($roles as $role)
+                    <tr class="border-bottom">
+                        <td>{{ $role->id }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>
+                            @can('create', App\Models\Role::class)
+                                <a class="btn btn-secondary mx-2" href="{{ route('dashboard.roles.edit', $role->id) }}">Editar</a> 
+                            @endcan
 
-                        @can('edit', App\Models\Role::class)
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $role->id }}">Excluir</button>
+                            @can('edit', App\Models\Role::class)
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $role->id }}">Excluir</button>
 
-                            <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
-                            <div class="modal fade" id="exampleModal-{{ $role->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form method="POST" action="{{ route('dashboard.roles.destroy', $role->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            
-                                            <div class="modal-header bg-danger">
-                                                <h5 class="modal-title text-white" id="exampleModalLabel">Excluir Secretaria</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Deseja realmente <strong>excluir</strong> o perfil {{ $role->name }} ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn text-danger border-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
-                                            </div>
-                                        </form>
+                                <!-- MODAIS DE EXCLUSÃO DAS SECRETARIAS -->
+                                <div class="modal fade" id="exampleModal-{{ $role->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form method="POST" action="{{ route('dashboard.roles.destroy', $role->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                
+                                                <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white" id="exampleModalLabel">Excluir Secretaria</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Deseja realmente <strong>excluir</strong> o perfil {{ $role->name }} ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn text-danger border-danger" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endcan
-                    </td>
-                </tr>
-            @endforeach
-            
+                            @endcan
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

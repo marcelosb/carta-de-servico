@@ -12,9 +12,9 @@ use Intervention\Image\Facades\Image;
 class ConfigurationController extends Controller
 {
     /**
-     * Exibe página de editar as perguntas frequentes
+     * Exibe a página de editar as configurações gerais
      * 
-     * @route dashboard/faq/edit  GET
+     * @route dashboard/configurations/edit  GET
      * @return Illuminate\Http\Response
      */
     public function edit()
@@ -29,10 +29,10 @@ class ConfigurationController extends Controller
     }
 
     /**
-     * Realiza a alteração das perguntas frequentes
+     * Realiza a alteração das configurações gerais
      * 
-     * @route dashboard/faq/update  PUT
-     * @param  App\Http\Requests\FaqRequest  $request
+     * @route dashboard/configurations/update  PUT
+     * @param App\Http\Requests\ConfigurationRequest  $request
      * @return Illuminate\Http\Response
      */
     public function update(ConfigurationRequest $request)
@@ -77,6 +77,12 @@ class ConfigurationController extends Controller
             ->with('status', 'Configurações atualizadas com sucesso!');
     }
 
+    /**
+     * Cria uma nova imagem com 180px de largura
+     * 
+     * @param  mixed  $image
+     * @return Intervention\Image\Image  $imageCurrent
+     */
     private function createImage($image)
     {
         $imageCurrent = Image::make($image);
@@ -87,6 +93,12 @@ class ConfigurationController extends Controller
         return $imageCurrent;
     }
 
+    /**
+     * Deleta a imagem antiga
+     * 
+     * @param string  $oldPath
+     * @return bool
+     */
     private function deleteFile(string $oldPath)
     {
         $pathOldLogo = substr($oldPath, 8);

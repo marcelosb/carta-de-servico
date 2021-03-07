@@ -11,11 +11,16 @@
     @endif
 
     <form class="border rounded bg-white p-4" method="POST" action="{{ route('dashboard.user.profile.update') }}" enctype="multipart/form-data">
+        {{-- TÍTULO DO FORMULÁRIO --}}
         <h2 class="mb-3">Alterar meus dados</h2>
     
+        {{-- CAMPO OCULTO CSRF --}}
         @csrf
+
+        {{-- CAMPO OCULTO DE REQUISIÇÃO HTTP DO TIPO PUT --}}
         @method('PUT')
 
+        {{-- CAMPO UPLOAD DE ARQUIVO (AVATAR IMAGEM) --}}
         <div class="border rounded bg-white p-4 mb-4">
             <div class="mb-3">
                 <label for="imageAvatar" class="form-label">Alterar o avatar</label>
@@ -37,18 +42,26 @@
                 @endif
             </div>
         </div>
+
+        {{-- CAMPO NOME --}}
         <div class="mb-3">
             <label for="userProfileNameEdit" class="form-label">Nome</label>
             <input type="text" name="name" class="form-control" id="userProfileNameEdit" value="{{ old('name') ?? $user->name }}" required autofocus>
         </div>
+
+        {{-- CAMPO EMAIL --}}
         <div class="mb-3">
             <label for="userProfileEmailEdit" class="form-label">E-mail</label>
             <input type="email" name="email" class="form-control" id="userProfileEmailEdit" value="{{ old('email') ?? $user->email }}" required>
         </div>
     
+        {{-- CAMPO OCULTO ID --}}
         <input type="hidden" name="id" value="{{ $user->id }}">
+
+        {{-- CAMPO OCULTO CAMINHO ANTIGO DO AVATAR (IMAGEM) --}}
         <input type="hidden" name="avatar_path_old" value="{{ $user->avatar }}">
 
+        {{-- BOTÕES DE ALTERAR E CANCELAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-secondary">Alterar</button>
             <a href="{{ route('dashboard.user.profile.index') }}" class="btn bg-white border-secondary text-secondary">Cancelar</a>

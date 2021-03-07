@@ -17,7 +17,7 @@
         {{-- CAMPO OCULTO DO CSRF --}}
         @csrf
 
-        {{-- CAMPO OCULTO DO TIPO DO MÉTODO HTTP --}}
+        {{-- CAMPO OCULTO DO TIPO REQUISIÇÃO HTTP PUT --}}
         @method('PUT')
 
         {{-- CAMPO NOME --}}
@@ -55,8 +55,6 @@
             @endforeach
             <hr>
         <div>
-
-            
     
         {{-- BOTÕES DE EDITAR E VOLTAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

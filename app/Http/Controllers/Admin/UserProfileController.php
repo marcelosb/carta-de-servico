@@ -13,10 +13,9 @@ use Intervention\Image\Facades\Image;
 
 class UserProfileController extends Controller
 {
-    /** 
-     * Exibe os dados do perfil do usuário
-     * 
-     * @route dashboard/user-profile  GET
+    /**
+     * Exibe os dados do perfil do usuário.
+     * @route /dashboard/user-profile  GET
      * @return \Illuminate\Http\Response
      */
     public function index() {
@@ -30,7 +29,7 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Show the form for editing the user profile.
+     * Exibe o formulário de alterar o perfil do usuário.
      *
      * @route dashboard/user-profile/edit  GET
      * @return \Illuminate\Http\Response
@@ -45,9 +44,10 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração do perfil de um usuário existente.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route dashboard/user-profile/update  PUT
+     * @param  \Illuminate\Http\UserProfileRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function update(UserProfileRequest $request)
@@ -82,10 +82,10 @@ class UserProfileController extends Controller
             ->with('status', 'Perfil do usuário atualizado com sucesso!');
     }
 
-    /**
-     * Show the form for editing the user profile.
+   /**
+     * Exibe o formulário de editar a senha do usuário logado.
      *
-     * @route dashboard/user-profile/edit  GET
+     * @route dashboard/user-profile/edit/password  GET
      * @return \Illuminate\Http\Response
      */
     public function editPassword()
@@ -94,9 +94,10 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração de senha do perfil de um usuário logado.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route dashboard/user-profile/update/password  PUT
+     * @param  \Illuminate\Http\UserProfilePasswordRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function updatePassword(UserProfilePasswordRequest $request)

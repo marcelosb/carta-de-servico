@@ -22,11 +22,16 @@
     @endcannot
 
     <form method="POST" action="{{ route('dashboard.configurations.update', $configuration->id) }}" enctype="multipart/form-data">
+        {{-- TÍTULO DO FORMULÁRIO --}}
         <h2 class="mb-4">Configurações</h2>
 
+        {{-- CAMPO OCULTO CSRF --}}
         @csrf
+
+        {{-- CAMPO OCULTO DA REQUISIÇÃO HTTP PUT --}}
         @method('PUT')
     
+        {{-- CAMPO TÍTULO DO SITE --}}
         <div class="border rounded bg-white p-4 mb-4">
             <div class="mb-3">
                 <label for="webSiteTitle" class="form-label">Título do site</label>
@@ -42,6 +47,7 @@
             </div>
         </div>
     
+        {{-- CAMPO UPLOAD DE ARQUIVOS (LOGO DO SITE) --}}
         <div class="border rounded bg-white p-4 mb-4">
             <div class="mb-3">
                 <label for="logoImage" class="form-label">Alterar a logo do website</label>
@@ -61,6 +67,7 @@
             </div>
         </div>
     
+        {{-- CAMPO UPLOAD DE ARQUIVOS (FAVICON DO SITE) --}}
         <div class="border rounded bg-white p-4 mb-4">
             <div class="mb-3">
                 <label for="faviconId" class="form-label">Alterar o favicon do website</label><br>
@@ -92,6 +99,7 @@
             <input type="hidden" name="logo_path_old" value="{{ $configuration->logo }}">
             <input type="hidden" name="favicon_path_old" value="{{ $configuration->favicon }}">
         
+            {{-- BOTÕES DE SALVAR E CANCELAR --}}
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="submit" class="btn btn-primary">Salvar</button>
                 <a href="{{ route('dashboard.home') }}" class="btn btn-secondary">Cancelar</a>   

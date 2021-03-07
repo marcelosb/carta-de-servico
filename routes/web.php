@@ -46,7 +46,6 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::resource('secretaries', SecretaryController::class)->except(['show']);
     Route::resource('services', ServiceController::class)->except(['show']);
     Route::resource('users', UserController::class)->except(['show']);
-    Route::resource('permissions', PermissionController::class)->except(['show']);
     Route::resource('roles', RoleController::class)->except(['show']);
 
     /** Alteração das perguntas frequentes (Módulo específico de edição) */

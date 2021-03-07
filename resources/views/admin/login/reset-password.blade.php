@@ -13,7 +13,6 @@
             @endif
 
             <form method="POST" action="{{ route('password.update') }}">
-                
                 {{-- TÍULO DO FORMULÁRIO --}}
                 <header class="text-secondary text-center bold">
                     <h3><strong>Criar nova senha</strong></h3>
@@ -48,7 +47,6 @@
                     <a href="{{  route('login') }}" class="btn btn-outline-primary bg-white text-primary mx-3">Voltar</a>
                     <button type="submit" class="btn btn-primary">Alterar senha</button>
                 </div>
-
             </form>
 
         </div>

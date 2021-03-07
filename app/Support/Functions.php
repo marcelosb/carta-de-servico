@@ -5,6 +5,13 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 
+/**
+ * Verifica se o módulo está ativo e muda a cor do menu
+ *
+ * @param string  $uri
+ * @param string  $class
+ * @return string  $classActive
+ */
 function isActive(string $uri, string $class = 'menu--active')
 {
     $pattern = '/' . $uri . '/';
@@ -13,6 +20,13 @@ function isActive(string $uri, string $class = 'menu--active')
     return $classActive;
 }
 
+/**
+ * Verifica se o módulo está ativo e muda a cor ícone
+ *
+ * @param string  $uri
+ * @param string  $color
+ * @return string  $colorIconActive
+ */
 function isActiveIcon(string $uri, string $color = '#FFFFFF')
 {
     $pattern = '/' . $uri . '/';
@@ -21,25 +35,14 @@ function isActiveIcon(string $uri, string $color = '#FFFFFF')
     return $colorIconActive;
 }
 
-function isCheckedPermissionUser(array $codes, array $permissions)
-{
-    // return in_array($code, $permissions) ? ' checked' : '';
-
-    // if (in_array($code, array_keys(config('permissions.name')))) {
-
-    // }  
-    // foreach ($codes as $code) {
-    //     // dd($code);
-    //     if (in_array($code, array_keys($permissions))) {
-    //         return ' checked';
-    //         // die;
-    //     } else {
-    //         return '';
-    //     }
-    // }
-
-}
-
+/**
+ * Verifica se o usuário autenticando no sistema
+ * Tem permissão para acessar determinado módulo/ação
+ *
+ * @param User $user
+ * @param string $codeCurrent
+ * @return bool
+ */
 function hasPermission(User $user, string $codeCurrent)
 {
     $id = $user->roles()->first()->id;
@@ -55,6 +58,12 @@ function hasPermission(User $user, string $codeCurrent)
     return false;
 }
 
+/**
+ * Retorna a logo do site, já no padrão das tags html
+ *
+ * @param string $page
+ * @return string  $image
+ */
 function logo(string $page = 'web') 
 {
     $image = '';
@@ -70,6 +79,11 @@ function logo(string $page = 'web')
     return $image;
 }
 
+/**
+ * Retorna o favicon do site, já no padrão das tags html
+ *
+ * @return string  $favicon
+ */
 function favicon() 
 {
     $favicon = '';

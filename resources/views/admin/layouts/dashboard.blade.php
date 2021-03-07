@@ -21,7 +21,6 @@
     <body>
 
 	    <section class="dashboard--painel">
-
 			{{-- BARRA LATERAL (LADO ESQUERDO) --}}
 			<aside id="barraLateral" class="barra--lateral">
 				@include('admin.layouts.partials.sidebar')
@@ -36,7 +35,6 @@
                     @yield('content')
 				</main>
 			</main>
-
 		</section>
 
 		<div class="bloco--cinza--transparente" style="display:none;"></div>

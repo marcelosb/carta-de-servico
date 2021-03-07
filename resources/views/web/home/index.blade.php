@@ -20,16 +20,7 @@
                     @else
                         <img src="{{ asset($secretary->icon) }}" alt="Ícone {{ $secretary->theme }}">
                     @endif
-                    
-                    {{-- <img src="{{ asset('images/web/secretary/icons/default.svg') }}" alt="Ícone {{ $secretary->theme }}"> --}}
-                    {{-- {!! setIconSecretary($secretary->theme_slug) !!} --}}
-                    
-                    
-                    {{-- @if($secretary->icon === 'default.svg')
-                        <img src="{{ asset('images/web/secretary/icons/default.svg') }}" alt="Ícone {{ $secretary->theme }}">
-                    @else
-                        <img src="{{ asset($secretary->icon) }}" alt="Ícone {{ $secretary->theme }}">
-                    @endif --}}
+                     
                     <h1>{{ $secretary->theme }}</h1>
                 </a>
             @endforeach
@@ -96,10 +87,8 @@
             justify-content: flex-start;
             flex-wrap: wrap;
             margin-top: -270px;
-            /* background-color: #E8E9F0; */
             box-shadow: 0px 0px 3px #DDDDDD;
             padding: 20px;
-            /* background-color: #293f6b; */
             background-color: #FFFFFF;
         }
         .temas--unidades--gestoras > .bloco {
@@ -115,7 +104,6 @@
             text-decoration: none;
             color: #181818;
             transition: transform 0.6s;
-            /* background-color: #293f6b; */
             /* box-shadow: 0 10px 30px 0 rgb(47 60 74 / 8%); */
         }
         .temas--unidades--gestoras > .bloco:hover {
@@ -134,7 +122,6 @@
             margin-top: 0px;
             font-size: 20px;
             text-align: center;
-            /* color: #FFFFFF; */
             font-family: 'Product Sans Black', sans-serif;
             white-space: nowrap;
             overflow: hidden;

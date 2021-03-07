@@ -19,10 +19,12 @@
             @endif
 
             <form method="POST" action="{{ route('password.email') }}">
-               {{-- TÍTULO E DESCRIÇÃO DO FORMLÁRIO --}}
+               {{-- TÍTULO DO FORMLÁRIO --}}
                 <header class="text-secondary">
                     <h3>Esqueci minha senha</h3>
                 </header>
+
+                {{-- DESCRIÇÃO DO FORMLÁRIO --}}
                 <div class="mb-3">
                     Informe o seu endereço de e-mail que está associado a sua conta de usuário.
                     Será enviada uma nova definição de senha para o seu e-mail.

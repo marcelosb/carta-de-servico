@@ -39,10 +39,6 @@
             </div>
             <hr>
             @foreach(config('permissions.name') as $key => $value)
-
-
-                {{-- <div>{{ $permission }}</div> --}}
-
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $key }}" id="{{ $key }}" onClick="checkPermission(this)"
                         @if(is_array(old('permission')) && in_array($value, old('permission'))) 
@@ -62,7 +58,6 @@
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             <a href="{{ route('dashboard.roles.index') }}" class="btn bg-white border-primary text-primary">Voltar</a>
         </div>
-
     </form>
 
 @endsection

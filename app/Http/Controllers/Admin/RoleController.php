@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
-use App\Models\Permission;
 use App\Models\Role;
 
 class RoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Exibe a lista de perfis.
+     * @route /dashboard/roles  GET
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -26,8 +25,9 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criar perfil.
      *
+     * @route /dashboard/roles/create  GET
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -38,9 +38,10 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Realiza a criação de um novo perfil.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/roles  POST
+     * @param  \Illuminate\Http\RoleRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(RoleRequest $request)
@@ -63,9 +64,10 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de alterar um perfil existente.
      *
-     * @param  int  $id
+     * @route /dashboard/roles/{role}/edit  GET
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -82,9 +84,10 @@ class RoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração de um perfil existente.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/roles/{role}  PUT
+     * @param  \Illuminate\Http\RoleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -106,9 +109,10 @@ class RoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Realiza a remoção de um perfil específico.
      *
-     * @param  int  $id
+     * @route /dashboard/roles/{role}  DELETE
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

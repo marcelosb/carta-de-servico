@@ -9,7 +9,7 @@ use App\Models\Faq;
 class FaqController extends Controller
 {
     /**
-     * Exibe página de editar as perguntas frequentes
+     * Exibe a página de editar as perguntas frequentes
      * 
      * @route dashboard/faq/edit  GET
      * @return Illuminate\Http\Response
@@ -29,7 +29,7 @@ class FaqController extends Controller
      * Realiza a alteração das perguntas frequentes
      * 
      * @route dashboard/faq/update  PUT
-     * @param  App\Http\Requests\FaqRequest  $request
+     * @param App\Http\Requests\FaqRequest  $request
      * @return Illuminate\Http\Response
      */
     public function update(FaqRequest $request)

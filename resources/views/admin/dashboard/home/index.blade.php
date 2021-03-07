@@ -2,6 +2,8 @@
 
 @section('content')
     <section class="container--home--cards">
+        
+        {{-- TOTAL DE SECRETARIAS REGISTRADAS --}}
         <div class="card--item">
             <div class="column--text">
                 <span>{{ $secretariesTotal }}</span>
@@ -16,7 +18,8 @@
                 </svg>
             </div>
         </div>
-        <!-- <div class="line--vertical"></div> -->
+
+        {{-- TOTAL DE SERVIÇOS REGISTRADOS --}}
         <div class="card--item">
             <div class="column--text">
                 <span>{{ $servicesTotal }}</span>

@@ -12,8 +12,8 @@ use Illuminate\Support\Str;
 class SecretaryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Exibe a lista de secretarias.
+     * @route /dashboard/secretaries  GET
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -28,8 +28,9 @@ class SecretaryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criar um nova secretaria.
      *
+     * @route /dashboard/secretaries/create  GET
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -40,9 +41,10 @@ class SecretaryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Realiza a criação de uma nova secretaria.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/secretaries  POST
+     * @param  \Illuminate\Http\SecretaryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(SecretaryRequest $request)
@@ -83,9 +85,10 @@ class SecretaryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de alterar uma secretaria existente.
      *
-     * @param  int  $id
+     * @route /dashboard/secretaries/{secretary}/edit  GET
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -100,9 +103,10 @@ class SecretaryController extends Controller
     }
                 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração de um perfil existente.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/secretaries/{secretary}  PUT
+     * @param  \Illuminate\Http\SecretaryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -149,9 +153,10 @@ class SecretaryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Realiza a remoção de uma secretaria específica.
      *
-     * @param  int  $id
+     * @route /dashboard/secretaries/{secretary}  DELETE
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

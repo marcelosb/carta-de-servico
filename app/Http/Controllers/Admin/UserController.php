@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Exibe a lista de usuários.
+     * @route /dashboard/users  GET
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -28,8 +28,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criar um novo usuário.
      *
+     * @route /dashboard/users/create  GET
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -44,9 +45,10 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Realiza a criação de um nov usuário.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/users  POST
+     * @param  \Illuminate\Http\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserRequest $request)
@@ -64,9 +66,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de alterar um usuário existente.
      *
-     * @param  int  $id
+     * @route /dashboard/users/{user}/edit  GET
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,9 +88,10 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração de um usuário existente.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/users/{user}  PUT
+     * @param  \Illuminate\Http\UserRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -102,9 +106,10 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Realiza a remoção de um usuário específico.
      *
-     * @param  int  $id
+     * @route /dashboard/users/{user}  DELETE
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

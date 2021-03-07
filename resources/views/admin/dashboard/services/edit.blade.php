@@ -11,11 +11,16 @@
     @endif
 
     <form class="border rounded bg-white p-4" method="POST" action="{{ route('dashboard.services.update', ['service' => $service->id]) }}">
+        {{-- TÍTULO DO FORMULÁRIO --}}
         <h2 class="mb-4">Editar Serviço</h2>
         
+        {{-- CAMPO OCULTO CSRF --}}
         @csrf
+
+        {{-- CAMPO OCULTO DE REQUISIÇÃO HTTP DO TIPO PUT --}}
         @method('PUT')
 
+        {{-- CAMPO SELECIONAR SECRETARIA --}}
         <div class="my-3">
             <select class="form-select" name="secretary_id" autofocus>
                 <option>Selecione a secretaria</option>
@@ -28,21 +33,29 @@
                 @endforeach
             </select>
         </div>
+
+        {{-- CAMPO NOME --}}
         <div class="mb-3">
             <label for="serviceNameEdit" class="form-label">Nome</label>
             <input type="text" name="name" class="form-control" id="serviceNameEdit" value="{{ old('name') ?? $service->name }}" required>
         </div>
 
+        {{-- CAMPO OCULTO SLUG NOME DO SERVIÇO --}}
         <input type="hidden" name="name_slug">
 
+        {{-- CAMPO DESCRIÇÃO --}}
         <div class="mb-3">
             <label for="serviceDescriptionEdit" class="form-label">Descrição</label>
             <textarea name="description" class="form-control" id="serviceDescriptionEdit" required>{{ old('description') ?? $service->description }}</textarea>
         </div>
+
+        {{-- CAMPO CONTEÚDO --}}
         <div class="mb-3">
             <label for="serviceContentEdit" class="form-label">Conteúdo</label>
             <textarea name="content" class="form-control" id="serviceContentEdit">{{ old('content') ?? $service->content }}</textarea>
         </div>
+
+        {{-- BOTÕES DE EDITAR E VOLTAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-primary">Editar</button>
             <a href="{{ route('dashboard.services.index') }}" class="btn bg-white border-primary text-primary">Voltar</a>

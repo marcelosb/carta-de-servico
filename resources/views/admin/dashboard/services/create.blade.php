@@ -11,8 +11,13 @@
     @endif
 
     <form class="border rounded bg-white p-4" method="POST" action="{{ route('dashboard.services.store') }}">
+        {{-- TÍTULO DO FORMULÁRIO --}}
         <h2 class="mb-4">Cadastrar Serviço</h2>
+
+        {{-- CAMPO OCULTO CSRF --}}
         @csrf
+
+        {{-- CAMPO SELECIONAR SECRETARIA --}}
         <div class="my-3">
             <select class="form-select" name="secretary_id" autofocus>
                 <option selected>Selecione a secretaria</option>
@@ -21,21 +26,29 @@
                 @endforeach
             </select>
         </div>
+
+        {{-- CAMPO NOME --}}
         <div class="mb-3">
             <label for="serviceName" class="form-label">Nome</label>
             <input type="text" name="name" class="form-control" id="serviceName" value="{{ old('name') }}" required>
         </div>
 
+        {{-- CAMPO OCULTO SLUG NOME DO SERVIÇO --}}
         <input type="hidden" name="name_slug">
 
+        {{-- CAMPO DESCRIÇÃO --}}
         <div class="mb-3">
             <label for="serviceDescription" class="form-label">Descrição</label>
             <textarea name="description" class="form-control" id="serviceDescription" required>{{ old('description') }}</textarea>
         </div>
+
+        {{-- CAMPO CONTEÚDO --}}
         <div class="mb-3">
             <label for="serviceContent" class="form-label">Conteúdo</label>
             <textarea name="content" class="form-control" id="serviceContent">{{ old('content') }}</textarea>
         </div>
+
+        {{-- BOTÕES DE CADASTRAR E VOLTAR --}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             <a href="{{ route('dashboard.services.index') }}" class="btn bg-white border-primary text-primary">Voltar</a>

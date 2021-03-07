@@ -13,7 +13,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 class WebController extends Controller
 {
     /**
-     * Mostrar a página inicial do site
+     * Exibe a página inicial do site
      * 
      * @route /  GET
      * @return \Illuminate\Http\Response
@@ -45,9 +45,9 @@ class WebController extends Controller
     }
 
     /**
-     * Mostrar a página de perguntas frequentes no site
+     * Exibe a página de perguntas frequentes no site
      * 
-     * @route /  GET
+     * @route /faq  GET
      * @return \Illuminate\Http\Response
      */
     public function faq()
@@ -76,6 +76,12 @@ class WebController extends Controller
         ]);
     }
 
+    /**
+     * Exibe a página da secretaria e seus serviços
+     * 
+     * @route /secretaria/{secretary_theme_slug}  GET
+     * @return \Illuminate\Http\Response
+     */
     public function secretary($secretarySlug)
     {
         $secretary = Secretary::where('theme_slug', $secretarySlug)->firstOrFail();
@@ -104,6 +110,12 @@ class WebController extends Controller
         ]);
     }
 
+    /**
+     * Exibe a página de um serviço em específico
+     * 
+     * @route /secretaria/{secretary_theme_slug}/{service_slug}  GET
+     * @return \Illuminate\Http\Response
+     */
     public function secretaryServices($secretarySlug, $serviceSlug)
     {
         $secretary = Secretary::where('theme_slug', $secretarySlug)->firstOrFail();

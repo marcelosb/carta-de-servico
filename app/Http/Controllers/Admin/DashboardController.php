@@ -14,7 +14,7 @@ class DashboardController extends Controller
     /** 
      * Exibe a página inicial do painel de controle
      * 
-     * @route  /dashboard  GET
+     * @route /dashboard  GET
      * @return \Illuminate\Http\Response 
     */
     public function index() 

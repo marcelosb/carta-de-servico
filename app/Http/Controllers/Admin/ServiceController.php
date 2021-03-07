@@ -10,8 +10,8 @@ use App\Models\Service;
 class ServiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Exibe a lista de serviços.
+     * @route /dashboard/services  GET
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -26,8 +26,9 @@ class ServiceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criar um novo serviço.
      *
+     * @route /dashboard/services/create  GET
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -42,9 +43,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Realiza a criação de um nov serviço.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/services  POST
+     * @param  \Illuminate\Http\ServiceRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ServiceRequest $request)
@@ -56,9 +58,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de alterar um serviço existente.
      *
-     * @param  int  $id
+     * @route /dashboard/services/{service}/edit  GET
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,9 +78,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Realiza a alteração de um serviço existente.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @route /dashboard/services/{service}  PUT
+     * @param  \Illuminate\Http\ServiceRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -92,9 +96,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Realiza a remoção de um serviço específico.
      *
-     * @param  int  $id
+     * @route /dashboard/services/{service}  DELETE
+     * @param int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
