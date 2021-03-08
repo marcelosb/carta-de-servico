@@ -57,28 +57,19 @@ class SecretaryController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $imageSecretary->encode());
 
-            Secretary::create([
-                'name' => $request->name,
-                'theme' => $request->theme,
-                'theme_slug' => Str::slug($request->theme, '-'),
-                'address' => $request->address,
-                'telephone' => $request->telephone,
-                'email' => $request->email ?? null,
-                'opening_hours' => $request->opening_hours,
-                'icon' => 'storage/' . $path
-            ]);
-
-        } else {
-            Secretary::create([
-                'name' => $request->name,
-                'theme' => $request->theme,
-                'theme_slug' => Str::slug($request->theme, '-'),
-                'address' => $request->address,
-                'telephone' => $request->telephone,
-                'email' => $request->email ?? null,
-                'opening_hours' => $request->opening_hours
-            ]);
+            $icon = 'storage/' . $path;
         }
+
+        Secretary::create([
+            'name' => $request->name,
+            'theme' => $request->theme,
+            'theme_slug' => Str::slug($request->theme, '-'),
+            'address' => $request->address,
+            'telephone' => $request->telephone,
+            'email' => $request->email ?? null,
+            'opening_hours' => $request->opening_hours,
+            'icon' => isset($icon) ? $icon : 'default'
+        ]);
 
         return redirect()->route('dashboard.secretaries.index')
             ->with('status', 'Secretaria cadastrada com sucesso!');
@@ -120,33 +111,24 @@ class SecretaryController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $imageSecretary->encode());
 
-            secretary::findOrFail($id)->update([
-                'name' => $request->name,
-                'theme' => $request->theme,
-                'theme_slug' => Str::slug($request->theme, '-'),
-                'address' => $request->address,
-                'telephone' => $request->telephone,
-                'email' => $request->email ?? null,
-                'opening_hours' => $request->opening_hours,
-                'icon' => 'storage/' . $path
-            ]);
+            $icon = 'storage/' . $path;
 
             if ($request->icon_path_old !== 'default') {
                 $pathOld = substr($request->icon_path_old, 8);
                 Storage::delete($pathOld);
             }
-
-        } else {
-            secretary::findOrFail($id)->update([
-                'name' => $request->name,
-                'theme' => $request->theme,
-                'theme_slug' => Str::slug($request->theme, '-'),
-                'address' => $request->address,
-                'telephone' => $request->telephone,
-                'email' => $request->email ?? null,
-                'opening_hours' => $request->opening_hours
-            ]);
         }
+
+        secretary::findOrFail($id)->update([
+            'name' => $request->name,
+            'theme' => $request->theme,
+            'theme_slug' => Str::slug($request->theme, '-'),
+            'address' => $request->address,
+            'telephone' => $request->telephone,
+            'email' => $request->email ?? null,
+            'opening_hours' => $request->opening_hours,
+            'icon' => isset($icon) ? $icon : $request->icon_path_old
+        ]);
 
         return redirect()->route('dashboard.secretaries.index')
             ->with('status', 'Secretaria atualizada com sucesso!');
