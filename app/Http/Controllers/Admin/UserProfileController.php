@@ -60,23 +60,20 @@ class UserProfileController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $avatar->encode());
 
-            User::findOrFail(Auth::user()->id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'avatar' => 'storage/' . $path
-            ]);
+            $avatar = 'storage/' . $path;
 
             if ($request->avatar_path_old !== 'default') {
                 $pathOld = substr($request->avatar_path_old, 8);
                 Storage::delete($pathOld);
             }
-
-        } else {
-            User::findOrFail(Auth::user()->id)->update([
-                'name' => $request->name,
-                'email' => $request->email
-            ]);
         }
+
+        $id = Auth::user()->id;
+        User::findOrFail($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'avatar' => isset($avatar) ? $avatar : $request->avatar_path_old
+        ]);
 
         return redirect()->route('dashboard.user.profile.index')
             ->with('status', 'Perfil do usuário atualizado com sucesso!');

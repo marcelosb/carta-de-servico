@@ -43,7 +43,7 @@ class ConfigurationController extends Controller
             $logoCurrent = $this->createImage($request->file('logo'));
 
             $extension = $request->file('logo')->extension();
-            $pathLogo = "public/images/{$this->year()}/{$this->fileName($extension)}";
+            $pathLogo = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($pathLogo, (string) $logoCurrent->encode());
 
             if ($request->logo_path_old !== 'default') {
@@ -57,7 +57,7 @@ class ConfigurationController extends Controller
             $faviconCurrent = Image::make($request->file('favicon'))->fit(192, 192);
 
             $extension = $request->file('favicon')->extension();
-            $pathFavicon = "public/images/{$this->year()}/{$this->fileName($extension)}";
+            $pathFavicon = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($pathFavicon, (string) $faviconCurrent->encode());
 
             if ($request->favicon_path_old !== 'default') {
@@ -103,28 +103,6 @@ class ConfigurationController extends Controller
     {
         $pathOldLogo = substr($oldPath, 8);
         Storage::delete($pathOldLogo);
-    }
-
-    /**
-     * Retorna um nome aletório de imagem e concatena com a extensão atual
-     *
-     * @param string  $extension
-     * @return string
-     */
-    private function fileName(string $extension)
-    {
-        $name = Str::random(32);
-        return "{$name}.{$extension}";
-    }
-
-    /**
-     * Retorna o ano corrente
-     *
-     * @return string
-     */
-    private function year()
-    {
-        return date('Y');
     }
 
 }
