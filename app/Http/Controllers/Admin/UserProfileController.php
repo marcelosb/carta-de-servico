@@ -60,7 +60,7 @@ class UserProfileController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $avatar->encode());
 
-            User::where('id', Auth::user()->id)->update([
+            User::findOrFail(Auth::user()->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'avatar' => 'storage/' . $path
@@ -72,7 +72,7 @@ class UserProfileController extends Controller
             }
 
         } else {
-            User::where('id', Auth::user()->id)->update([
+            User::findOrFail(Auth::user()->id)->update([
                 'name' => $request->name,
                 'email' => $request->email
             ]);
@@ -103,7 +103,7 @@ class UserProfileController extends Controller
     public function updatePassword(UserProfilePasswordRequest $request)
     {
         $id = Auth::user()->id;
-        User::where('id', $id)->update([
+        User::findOrFail($id)->update([
             'password' => Hash::make($request->new_password)
         ]);
 

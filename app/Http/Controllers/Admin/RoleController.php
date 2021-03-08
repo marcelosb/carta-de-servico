@@ -67,7 +67,7 @@ class RoleController extends Controller
     {
         $this->authorize('edit', Role::class);
 
-        $role = Role::where('id', $id)->firstOrFail();
+        $role = Role::findOrFail($id);
         $codes = explode(',', $role->permissions->codes);
 
         return view('admin.dashboard.roles.edit', [
@@ -86,7 +86,7 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, $id)
     {
-        $role = Role::where('id', $id)->firstOrFail();
+        $role = Role::findOrFail($id);
 
         DB::beginTransaction();
             $role->update($request->all());
@@ -108,7 +108,7 @@ class RoleController extends Controller
     {
         $this->authorize('delete', Role::class);
 
-        $role = Role::where('id', $id)->firstOrFail();
+        $role = Role::findOrFail($id);
         $role->delete();
 
         return redirect()->route('dashboard.roles.index')

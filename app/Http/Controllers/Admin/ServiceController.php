@@ -68,7 +68,7 @@ class ServiceController extends Controller
     {
         $this->authorize('edit', Service::class);
 
-        $service = Service::where('id', $id)->firstOrFail();
+        $service = Service::findOrFail($id);
         $secretaries = Secretary::all(['id', 'name']);
 
         return view('admin.dashboard.services.edit', [
@@ -87,9 +87,8 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, $id)
     {
-        $service = Service::where('id', $id)->firstOrFail();
-        $service->fill($request->all());
-        $service->save();
+        $service = Service::findOrFail($id);
+        $service->update($request->all());
 
         return redirect()->route('dashboard.services.index')
             ->with('status', 'Serviço atualizado com sucesso!');
@@ -106,7 +105,7 @@ class ServiceController extends Controller
     {
         $this->authorize('delete', Service::class);
 
-        $service = Service::where('id', $id)->firstOrFail();
+        $service = Service::findOrFail($id);
         $service->delete();
 
         return redirect()->route('dashboard.services.index')

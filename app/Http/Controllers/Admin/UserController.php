@@ -79,7 +79,7 @@ class UserController extends Controller
     {
         $this->authorize('edit', User::class);
 
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::findOrFail($id);
         $roleId = $user->roles()->first()->id;
         $roles = Role::all(['id', 'name']);
         
@@ -100,7 +100,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::findOrFail($id);
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('dashboard.users.index')
@@ -118,7 +118,7 @@ class UserController extends Controller
     {
         $this->authorize('delete', User::class);
 
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::findOrFail($id);
         
         // Deleta a foto de perfil do usuário, caso não seja a imagem padrão
         if ($user->avatar !== 'default') {

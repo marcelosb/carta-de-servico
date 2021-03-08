@@ -95,7 +95,7 @@ class SecretaryController extends Controller
     {
         $this->authorize('edit', Secretary::class);
         
-        $secretary = Secretary::where('id', $id)->firstOrFail(); 
+        $secretary = Secretary::findOrFail($id); 
 
         return view('admin.dashboard.secretaries.edit', [
             'secretary' => $secretary
@@ -120,7 +120,7 @@ class SecretaryController extends Controller
             $path = 'public/images/'.year().'/'.fileName($extension);
             Storage::put($path, (string) $imageSecretary->encode());
 
-            secretary::where('id', $id)->firstOrFail()->update([
+            secretary::findOrFail($id)->update([
                 'name' => $request->name,
                 'theme' => $request->theme,
                 'theme_slug' => Str::slug($request->theme, '-'),
@@ -137,7 +137,7 @@ class SecretaryController extends Controller
             }
 
         } else {
-            secretary::where('id', $id)->firstOrFail()->update([
+            secretary::findOrFail($id)->update([
                 'name' => $request->name,
                 'theme' => $request->theme,
                 'theme_slug' => Str::slug($request->theme, '-'),
@@ -163,7 +163,7 @@ class SecretaryController extends Controller
     {
         $this->authorize('delete', Secretary::class);
 
-        $secretary = Secretary::where('id', $id)->firstOrFail();
+        $secretary = Secretary::findOrFail($id);
         
         // Deleta a foto de perfil do usuário, caso não seja a imagem padrão
         if ($secretary->icon !== 'default') {
