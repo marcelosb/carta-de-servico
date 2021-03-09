@@ -36,6 +36,14 @@ class Role extends Model
     }
 
     /**
+     * Lê-se: este perfil (this) pertence a muitos (belongsToMany) usuários (User::class)
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_role');
+    }
+
+    /**
      * Verifica se existe o perfil de admin cadastrado no sistema.
      * Caso não exista, é criado um perfil de admin.
      * 

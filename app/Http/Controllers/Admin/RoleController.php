@@ -109,10 +109,14 @@ class RoleController extends Controller
         $this->authorize('delete', Role::class);
 
         $role = Role::findOrFail($id);
-        $role->delete();
-
+        if ($role->users->isEmpty()) {
+            $role->delete();
+            return redirect()->route('dashboard.roles.index')
+                ->with('status', 'Perfil excluído com sucesso!');
+        }
+        
         return redirect()->route('dashboard.roles.index')
-            ->with('status', 'Perfil excluído com sucesso!');
+            ->with('warning', "O perfil {$role->name} não pode ser excluído, pois está sendo utilizado por algum usuário!");
     }
     
 }
