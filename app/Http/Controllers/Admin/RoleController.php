@@ -99,6 +99,7 @@ class RoleController extends Controller
 
     /**
      * Realiza a remoção de um perfil específico.
+     * Se algum usuário estiver usando o perfil selecionado, o mesmo não será deletado.
      *
      * @route /dashboard/roles/{role}  DELETE
      * @param int  $id
