@@ -1,4 +1,4 @@
-@extends('admin.layouts.login')
+@extends('admin.auth.layouts.master')
 
 @section('content') 
     <h2 class="text-center mt-4">Administrador do Sistema</h2>

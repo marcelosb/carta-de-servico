@@ -1,4 +1,4 @@
-@extends('admin.layouts.login')
+@extends('admin.auth.layouts.master')
 
 @section('content') 
     <div class="bloco--flex">
@@ -54,56 +54,5 @@
 @endsection
 
 @section('styles')
-    <style>
-        .bloco--flex {
-            width: 100vw;
-            height: 100vh;
-            padding: 20px;
-            background-color: #F2F2F2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .bloco--flex > .container--form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #FFFFFF;
-            width: 600px;
-            padding: 40px;
-        }
-        header > h3 {
-            font-weight:300;
-        }
-        .grupo--buttons {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        @media screen and (min-width:0px) and (max-width:700px) {
-            .bloco--flex {
-                padding: 20px;
-            }
-            .bloco--flex > .container--form {
-                width: 100%;
-                padding: 40px;
-            }
-            header > h3 {
-                color: #000000 !important;
-                font-size: 20px !important;
-                font-weight:500;
-            }
-            header + div {
-                margin-top: 15px !important;
-                font-size: 15px !important;
-            }
-            .grupo--buttons {
-                flex-direction: column-reverse;
-            }
-            .grupo--buttons > a {
-                margin: 10px 0px 0px 0px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/admin/auth/reset-password.css') }}">
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.dashboard.layouts.master')
 
 @section('content')
     <section class="container--home--cards">
@@ -53,9 +53,6 @@
             width: 45%;
             padding: 20px;
         }
-        /* .container--home--cards > .line--vertical {
-            border-left: 2px dotted #899e9c;
-        } */
 
         .card--item > .column--text {
             display: flex;

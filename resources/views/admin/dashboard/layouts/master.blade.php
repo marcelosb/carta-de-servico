@@ -7,11 +7,10 @@
 		<title>Carta de Serviços - Prefeitura Municipal de São Bento</title>
 		<meta name="description" content="A Prefeitura Municipal de São Bento, objetivando maior visibilidade e transparência às suas ações, apresenta sua Carta de Serviços com informações claras e precisas sobre os principais serviços prestados aos cidadãos.">
 		<meta name="robots" content="noindex, nofollow">
-
 		{!! favicon() !!}
 
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/template.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin/dashboard/dashboard.css') }}">
 		
 		@hasSection('styles')
 			@yield('styles')
@@ -23,13 +22,13 @@
 	    <section class="dashboard--painel">
 			{{-- BARRA LATERAL (LADO ESQUERDO) --}}
 			<aside id="barraLateral" class="barra--lateral">
-				@include('admin.layouts.partials.sidebar')
+				@include('admin.dashboard.layouts.partials.sidebar')
 			</aside>
 
 			{{-- CABEÇALHO DO PAINEL DE CONTROLE E CONTEÚDO --}}
 			<main class="main--conteudo">
 				<header>
-					@include('admin.layouts.partials.header')
+					@include('admin.dashboard.layouts.partials.header')
 				</header>
 				<main id="content">
                     @yield('content')

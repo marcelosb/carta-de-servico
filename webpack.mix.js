@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.
-    styles([
+mix
+    .styles([
         'public/css/web/all.css',
         'public/css/web/header.css',
         'public/css/web/footer.css',

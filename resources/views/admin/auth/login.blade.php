@@ -1,4 +1,4 @@
-@extends('admin.layouts.login')
+@extends('admin.auth.layouts.master')
 
 @section('content') 
     <div class="bloco-flex">
@@ -54,4 +54,8 @@
             
         </div>
     </div>
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/admin/auth/login.css') }}">
 @endsection

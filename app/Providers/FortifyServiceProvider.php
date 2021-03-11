@@ -44,7 +44,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function() {
             $configuration = Configuration::getConfiguration();
 
-            return view('admin.login.index', [
+            return view('admin.auth.login', [
                 'configuration' => $configuration
             ]);
         });
@@ -53,17 +53,17 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function() {
             $permissions = Permission::all();
 
-            return view('admin.login.register', [
+            return view('admin.auth.register', [
                 'permissions' => $permissions
             ]);
         });
 
         /** 
-         * Mostra a págian de redefinição de senha
+         * Mostra a página de redefinição de senha
          * @route /forgot-password  GET 
         */
         Fortify::requestPasswordResetLinkView(function () {
-            return view('admin.login.forgot-password');
+            return view('admin.auth.forgot-password');
         });
 
         /** 
@@ -71,7 +71,7 @@ class FortifyServiceProvider extends ServiceProvider
          * @route /reset-password/{token}  GET 
          * */
         Fortify::resetPasswordView(function ($request) {
-            return view('admin.login.reset-password', ['request' => $request]);
+            return view('admin.auth.reset-password', ['request' => $request]);
         });
 
         Fortify::authenticateUsing(function (Request $request) {

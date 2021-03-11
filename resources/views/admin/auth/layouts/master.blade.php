@@ -7,11 +7,9 @@
 		<title>Carta de Serviços - Prefeitura Municipal de São Bento</title>
 		<meta name="description" content="A Prefeitura Municipal de São Bento, objetivando maior visibilidade e transparência às suas ações, apresenta sua Carta de Serviços com informações claras e precisas sobre os principais serviços prestados aos cidadãos.">
 		<meta name="robots" content="noindex, nofollow">
-    
-		<link rel="stylesheet" href="{{ url(asset('/css/bootstrap.min.css')) }}">
-		<link rel="stylesheet" href="{{ url(asset('/css/login.css')) }}">
-
 		{!! favicon() !!}
+    
+		<link rel="stylesheet" href="{{ url(asset('css/admin/bootstrap.min.css')) }}">
 
 		@hasSection('styles')
 			@yield('styles')
