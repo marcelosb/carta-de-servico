@@ -53,5 +53,5 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/web/servico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/service.css') }}">
 @endsection

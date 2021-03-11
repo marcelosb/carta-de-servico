@@ -1,3 +1,17 @@
+:root {
+    --cor-do-cabecalho: linear-gradient(86deg, #19A39A, #0C5254);
+    --cor-da-barra-lateral: #19A39A;
+    --text-color-dashboard: #FFFFFF;
+    --icon-color-dashbard: #FFFFFF;
+    --gray: #6C757D;
+    --red: #DC3545;
+    --light: #F1F1F1;
+    --white: #FFFFFF;
+    --blue: #003D6B;
+    --black: #999999;
+    --orange: #FFD500;
+    --cabecalho-height: 80px;
+}
 
 body {
 	margin: 0px;
@@ -9,6 +23,21 @@ body {
     overflow-x: hidden;
     width: 100%;
     height: 100%;
+}
+
+@font-face {
+	font-family: 'Product Sans Regular';
+	src: url(../../fonts/product_sans_regular.woff);
+}
+
+@font-face {
+	font-family: 'Product Sans Medium';
+	src: url(../../fonts/product_sans_medium.woff);
+}
+
+@font-face {
+	font-family: 'Product Sans Black';
+	src: url(../../fonts/product_sans_black.woff);
 }
 
 a {

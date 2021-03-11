@@ -1,17 +1,3 @@
-@font-face {
-	font-family: 'Product Sans Black';
-    src: url(../../fonts/product_sans_black.woff);
-}
-
-@font-face {
-	font-family: 'Product Sans Medium';
-	src: url(../../fonts/product_sans_medium.woff);
-}
-
-@font-face {
-	font-family: 'Product Sans Regular';
-	src: url(../../fonts/product_sans_regular.woff);
-}
 
 .bloco--geral--servico {
     display: flex;

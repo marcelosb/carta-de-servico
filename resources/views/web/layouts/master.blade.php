@@ -5,12 +5,16 @@
         {!! SEOMeta::generate() !!}
         {!! OpenGraph::generate() !!}
         {!! Twitter::generate() !!}
-
-        <link rel="stylesheet" href="{{ asset('css/web/all.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/web/header.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/web/footer.css') }}">
-
         {!! favicon() !!}
+
+        {{-- 
+            <link rel="stylesheet" href="{{ asset('css/web/all.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/web/header.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/web/footer.css') }}"> 
+        --}}
+
+        {{-- JUNÇÃO E MINIFICAÇÃO DOS ARQUIVOS ALL, HEADER E FOOTER.CSS  --}}
+        <link rel="stylesheet" href="{{ asset('css/web/web.min.css') }}">
 
         @hasSection('styles')
 			@yield('styles')
