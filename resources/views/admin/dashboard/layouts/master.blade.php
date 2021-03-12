@@ -38,9 +38,9 @@
 
 		<div class="bloco--cinza--transparente" style="display:none;"></div>
 
-		<script src="{{ asset('js/popper.min.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/template.js') }}"></script>
+		<script src="{{ asset('js/admin/dashboard/popper.min.js') }}"></script>
+		<script src="{{ asset('js/admin/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/admin/dashboard/dashboard.js') }}"></script>
 
 		@hasSection('scripts')
 			@yield('scripts')

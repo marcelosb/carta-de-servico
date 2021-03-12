@@ -21,8 +21,7 @@
 			@yield('content')
 		</main>
 		
-		<script src="{{ url(asset('/js/bootstrap.min.js')) }}"></script>
-		<script src="{{ url(asset('/js/login.js')) }}"></script>
+		<script src="{{ url(asset('js/admin/bootstrap.min.js')) }}"></script>
 		
 		@hasSection('scripts')
 			@yield('scripts')
