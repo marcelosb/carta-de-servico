@@ -35,8 +35,8 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach($secretaries as $secretary)
+            <tbody>   
+                @forelse($secretaries as $secretary)
                     <tr class="border-bottom">
                         <td>{{ $secretary->name }}</td>
                         <td>{{ $secretary->theme }}</td>
@@ -75,7 +75,13 @@
                             @endcan
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="3" class="fs-3 text-secondary text-center" style="background-color:rgba(0, 0, 0, 0.075);">
+                            Não existem secretarias cadastradas no sistema
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -131,7 +137,7 @@
 @section('scripts')
     <script>
         (async () => {
-            const { Search } = await import("{{ asset('js/Search.js') }}");
+            const { Search } = await import("{{ asset('js/admin/dashboard/Search.js') }}");
             Search.run();
         })();
     </script>

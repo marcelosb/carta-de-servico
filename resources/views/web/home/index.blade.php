@@ -13,7 +13,7 @@
 
     <section class="wrapper">
         <div class="temas--unidades--gestoras" style="border-radius:10px"> 
-            @foreach($secretaries as $secretary)
+            @forelse($secretaries as $secretary)
                 <a class="bloco" href="{{ route('web.secretary', $secretary->theme_slug) }}">
                     @if($secretary->icon === 'default')
                         <img src="{{ asset('images/web/secretary/icons/default.svg') }}" alt="Ícone {{ $secretary->theme }}">
@@ -23,7 +23,12 @@
                      
                     <h1>{{ $secretary->theme }}</h1>
                 </a>
-            @endforeach
+            @empty
+                <div class="container--secretary--empty">
+                    <div class="title--ops">Ooops!</div>
+                    <div class="description">Não existem secretarias cadastradas no sistema</div>
+                </div>
+            @endforelse
         </div>
     </section>
 @endsection

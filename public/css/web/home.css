@@ -79,6 +79,30 @@ main {
 	transform: scale(1.1);
 }
 
+/* BLOCO SECRETARIA EM BRANCO */
+.container--secretary--empty {
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.container--secretary--empty > .title--ops {
+    font-family: 'Product Sans Black', sans-serif;
+    font-size: 80px;
+    color: #293F6B;
+    text-align: center;
+}
+.container--secretary--empty > .description {
+    font-family: 'Product Sans Medium', sans-serif;
+    font-size: 30px;
+    color: #293F6B;
+    text-align: center;
+}
+
+/* UNIDADES GESTORAS IMAGEM */
 .temas--unidades--gestoras > .bloco > img {
 	width: 150px; 
 	height: 150px;

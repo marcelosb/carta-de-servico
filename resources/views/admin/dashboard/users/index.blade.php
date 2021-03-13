@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
+                @forelse($users as $user)
                     <tr class="border-bottom">
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
@@ -73,7 +73,13 @@
                             @endcan
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="3" class="fs-3 text-secondary text-center" style="background-color:rgba(0, 0, 0, 0.075);">
+                            Não existem usuários cadastradas no sistema
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -129,7 +135,7 @@
 @section('scripts')
     <script>
         (async () => {
-            const { Search } = await import("{{ asset('js/Search.js') }}");
+            const { Search } = await import("{{ asset('js/admin/dashboard/Search.js') }}");
             Search.run();
         })();
     </script>

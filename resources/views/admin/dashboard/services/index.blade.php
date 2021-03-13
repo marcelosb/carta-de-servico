@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($services as $service)
+                @forelse($services as $service)
                     <tr class="border-bottom">
                         <td>{{ $service->name }}</td>
                         <td>{{ $service->secretary->theme }}</td>
@@ -73,7 +73,13 @@
                             @endcan
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="3" class="fs-3 text-secondary text-center" style="background-color:rgba(0, 0, 0, 0.075);">
+                            Não existem serviços cadastradas no sistema
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
 
@@ -161,7 +167,7 @@
 @section('scripts')
     <script>
         (async () => {
-            const { Search } = await import("{{ asset('js/Search.js') }}");
+            const { Search } = await import("{{ asset('js/admin/dashboard/Search.js') }}");
             Search.run();
         })();
     </script>

@@ -57,7 +57,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/tinymce.min.js') }}"></script>
+    <script src="{{ asset('js/admin/dashboard/tinymce.min.js') }}"></script>
     <script>
         tinymce.init({
             selector: '#serviceContent',
