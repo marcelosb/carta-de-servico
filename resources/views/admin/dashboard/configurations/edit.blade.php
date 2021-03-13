@@ -144,17 +144,17 @@
 @endsection
 
 @section('scripts')
-    <script>   
+    <script>  
 
         const imagemLogo = document.getElementById('logoImage');
         imagemLogo.addEventListener('change', function(event) {
             const fileImage = event.target.files[0];
-
             const reader = new FileReader();
             reader.addEventListener('load', (event) => {
                 const imageCurrent = document.getElementById('imageCurrent');
                 imageCurrent.src = event.target.result;
             });
+
             reader.readAsDataURL(fileImage);
         });
 
@@ -167,6 +167,7 @@
                 const faviconCurrent = document.getElementById('faviconCurrent');
                 faviconCurrent.src = event.target.result;
             });
+            
             reader.readAsDataURL(fileFavicon);
         });
 

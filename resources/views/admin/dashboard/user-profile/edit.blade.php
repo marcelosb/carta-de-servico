@@ -36,9 +36,13 @@
             <div class="mb-3">
                 <label for="caminhoDoAvatar" class="form-label">Avatar atual</label><br>
                 @if($user->avatar === 'default')
-                    <img src="{{ asset('images/avatar.svg') }}" width="100px" height="100px" alt="Avatar padrão" id="avatarDefault">
+                    <a data-fslightbox="gallery" href="{{ asset('images/avatar.svg') }}">
+                        <img src="{{ asset('images/avatar.svg') }}" width="100px" height="100px" alt="Avatar padrão" id="avatarDefault">
+                    </a>
                 @else
-                    <img class="rounded-circle" src="{{ asset($user->avatar) }}" width="100px" height="100px" alt="Avatar" id="avatarCurrent">
+                    <a data-fslightbox="gallery" href="{{ asset($user->avatar) }}">
+                        <img class="rounded-circle" src="{{ asset($user->avatar) }}" width="100px" height="100px" alt="Avatar" id="avatarCurrent">
+                    </a>
                 @endif
             </div>
         </div>
@@ -71,6 +75,8 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/admin/dashboard/fslightbox.js') }}"></script>
+
     <script>
         const imageAvatar = document.getElementById('imageAvatar');
         imageAvatar.addEventListener('change', function(event) {
@@ -82,13 +88,24 @@
                 if (avatarCurrent) {
                     avatarCurrent.src = event.target.result;
                 }
-
                 const avatarDefault = document.getElementById('avatarDefault');
                 if (avatarDefault) {
                     avatarDefault.src = event.target.result;
                 }
             });
+
             reader.readAsDataURL(fileIAvatar);
         });
+
+        const linkAvatarLigthBox = document.querySelector('[data-fslightbox="gallery"]');
+        linkAvatarLigthBox.addEventListener('click', function() {
+            const avatarLigthBox = document.querySelector('[class="fslightbox-source fslightbox-opacity-1"]');
+            if (avatarLigthBox) {
+                const avatarCurrent = document.getElementById('avatarCurrent');
+                avatarLigthBox.src = avatarCurrent.src;
+            }
+        });
+
     </script>
+    
 @endsection
