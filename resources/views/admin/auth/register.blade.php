@@ -52,25 +52,3 @@
         </div>
     </form>
 @endsection
-
-@section('scripts')
-    <script>
-
-        function activeAllPermissions(elementSelectAll) {
-            const permissions = document.querySelectorAll('[type="checkbox"]');
-            permissions.forEach(function(permission) {
-                if (permission !== elementSelectAll) {
-                    permission.checked = elementSelectAll.checked;
-                }
-            });
-        }
-
-        function checkPermission(permission) {
-            const selectAll = document.getElementById('checkSelectAll');
-            if (permission.checked === false) {
-                selectAll.checked = permission.checked;
-            }
-        }
-
-    </script>
-@endsection

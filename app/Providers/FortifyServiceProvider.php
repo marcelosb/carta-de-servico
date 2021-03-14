@@ -7,7 +7,6 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\Configuration;
-use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -51,11 +50,12 @@ class FortifyServiceProvider extends ServiceProvider
 
         /** @route /register   GET */
         Fortify::registerView(function() {
-            $permissions = Permission::all();
+            $user = User::all();
+            if ($user->isEmpty()) {
+                return view('admin.auth.register');
+            }
 
-            return view('admin.auth.register', [
-                'permissions' => $permissions
-            ]);
+            return redirect()->route('login');
         });
 
         /** 

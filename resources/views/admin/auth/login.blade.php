@@ -47,10 +47,6 @@
             <div class="text-center mt-4">
                 <a href="{{ route('password.request') }}" class="text-primary text-decoration-none">Esqueci minha senha</a>
             </div>
-
-            <div class="text-center mt-4">
-                <a href="{{ route('register') }}" class="text-primary">Registrar novo usuário</a>
-            </div>
             
         </div>
     </div>
