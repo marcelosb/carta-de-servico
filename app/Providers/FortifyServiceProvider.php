@@ -42,7 +42,6 @@ class FortifyServiceProvider extends ServiceProvider
         /** @route /login  GET */
         Fortify::loginView(function() {
             if (User::all()->isEmpty()) {
-                // return view('admin.auth.register');
                 return redirect()->route('register');
             }
 
@@ -55,7 +54,6 @@ class FortifyServiceProvider extends ServiceProvider
         /** @route /register   GET */
         Fortify::registerView(function() {
             if (User::all()->isEmpty()) {
-                // return redirect()->route('register');
                 return view('admin.auth.register');
             }
 
