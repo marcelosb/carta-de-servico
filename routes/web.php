@@ -41,7 +41,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::get('/user-profile/edit/password', [UserProfileController::class, 'editPassword'])->name('user.profile.edit.password');
     Route::put('/user-profile/update/password', [UserProfileController::class, 'updatePassword'])->name('user.profile.update.password');
 
-    /** Módulos da aplicação */
+    // Módulos da aplicação
     Route::resource('secretaries', SecretaryController::class)->except(['show']);
     Route::resource('services', ServiceController::class)->except(['show']);
     Route::resource('users', UserController::class)->except(['show']);
